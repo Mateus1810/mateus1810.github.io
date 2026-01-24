@@ -21,6 +21,28 @@
   <link rel="stylesheet" href="./orçamento.css">
 </head>
 
+<style>
+.btn-voltar {
+    background-color: #4CAF50; /* verde bonito */
+    color: white; /* texto branco */
+    padding: 12px 24px; /* espaço interno do botão */
+    border: none; /* tira a borda padrão */
+    border-radius: 8px; /* cantos arredondados */
+    font-size: 16px; /* tamanho da fonte */
+    cursor: pointer; /* muda o cursor ao passar por cima */
+    transition: background-color 0.3s, transform 0.2s; /* animação suave */
+}
+
+.btn-voltar:hover {
+    background-color: #45a049; /* verde mais escuro ao passar o mouse */
+    transform: scale(1.05); /* botão dá uma leve aumentada */
+}
+
+.btn-voltar:active {
+    transform: scale(0.95); /* efeito de clique */
+}
+</style>
+
 <body>
   <!-- Decorações poligonais -->
   <div class="polygon-decoration polygon-1"></div>
@@ -32,13 +54,14 @@
       <div class="header-content">
         <div class="logo-section">
           <div class="logo">
-            <img src="../src/img/Digital_cinza.jpg" alt="Logo Digital Drift" class="logo-img">
+            <img src="../img/Digital_cinza.jpg" alt="Logo Digital Drift" class="logo-img">
           </div>
           <div class="company-info">
             <h1>Digital Drift</h1>
             <p>Assistência Técnica Especializada</p>
           </div>
         </div>
+        <button class="btn-voltar">Voltar para a página inicial</button>
         <div class="header-stats">
           <div class="stat">
             <span class="stat-number" id="current-date"></span>
@@ -397,6 +420,12 @@
 
   <!-- Seu JS principal do orçamento -->
   <script src="./orçamento.js"></script>
+
+  <script>
+document.querySelector('.btn-voltar').addEventListener('click', function() {
+    window.location.href = '/index.html';
+});
+</script>
 
   <!-- BRL + resultado individual por opção -->
   <script>

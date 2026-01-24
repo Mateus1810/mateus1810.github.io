@@ -408,6 +408,26 @@
             margin-bottom: 10px;
         }
     }
+
+    .btn-voltar {
+    background-color: #4CAF50; /* verde bonito */
+    color: white; /* texto branco */
+    padding: 12px 24px; /* espaço interno do botão */
+    border: none; /* tira a borda padrão */
+    border-radius: 8px; /* cantos arredondados */
+    font-size: 16px; /* tamanho da fonte */
+    cursor: pointer; /* muda o cursor ao passar por cima */
+    transition: background-color 0.3s, transform 0.2s; /* animação suave */
+}
+
+.btn-voltar:hover {
+    background-color: #45a049; /* verde mais escuro ao passar o mouse */
+    transform: scale(1.05); /* botão dá uma leve aumentada */
+}
+
+.btn-voltar:active {
+    transform: scale(0.95); /* efeito de clique */
+}
 </style>
 </head>
 
@@ -421,7 +441,9 @@
         <div class="title-box">
             <h1>Checklist de Entrada</h1>
             <h2>Assistência Técnica</h2>
+            <button class="btn-voltar">Voltar para a página inicial</button>
         </div>
+        
     </div>
 
     <div class="section">
@@ -657,6 +679,13 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+document.querySelector('.btn-voltar').addEventListener('click', function() {
+    window.location.href = '/index.html';
+});
+</script>
+
 <script>
 window.jsPDF = window.jspdf.jsPDF;
 
