@@ -25,7 +25,6 @@
         border: 1px solid #000;
     }
 
-    /* HEADER */
     .header {
         display: flex;
         align-items: center;
@@ -66,7 +65,6 @@
 
     .section {
         margin-top: 20px;
-        page-break-inside: avoid;
     }
 
     .section-title {
@@ -81,7 +79,6 @@
         width: 100%;
         border-collapse: collapse;
         font-size: 14px;
-        table-layout: fixed;
     }
 
     table, th, td {
@@ -176,8 +173,6 @@
         font-size: 18px;
         line-height: 1;
         z-index: 10;
-        padding: 0;
-        margin: 0;
     }
 
     .photo-box .remove-btn:hover {
@@ -189,7 +184,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
-        page-break-inside: avoid;
     }
 
     .signature div {
@@ -200,6 +194,63 @@
         border-bottom: 1px solid #000;
         margin-top: 40px;
         margin-bottom: 5px;
+    }
+
+    .signature-pad {
+        border: 2px solid #000;
+        border-radius: 8px;
+        cursor: crosshair;
+        background: white;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .signature-controls {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .close-modal {
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #666;
+    }
+
+    .close-modal:hover {
+        color: #000;
     }
 
     button {
@@ -216,58 +267,14 @@
         background: #ddd;
     }
 
-    /* RESPONSIVIDADE */
     @media (max-width: 768px) {
         .container {
             padding: 10px;
         }
 
-        h1 {
-            font-size: 18px;
-        }
-
-        h2 {
-            font-size: 12px;
-        }
-
         .header {
             flex-direction: column;
             text-align: center;
-        }
-
-        .logo-box {
-            width: 80px;
-            height: 50px;
-        }
-
-        table, th, td {
-            font-size: 13px;
-        }
-
-        th, td {
-            padding: 6px;
-        }
-
-        .tests-table {
-            font-size: 12px;
-        }
-
-        .tests-table td, .tests-table th {
-            padding: 5px 3px;
-        }
-
-        input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
-        }
-
-        .signature {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        .photos {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         }
 
         button {
@@ -276,135 +283,15 @@
             margin-bottom: 10px;
         }
     }
-
-    @media (max-width: 480px) {
-        .container {
-            padding: 8px;
-        }
-
-        h1 {
-            font-size: 16px;
-        }
-
-        .section-title {
-            font-size: 14px;
-        }
-
-        table, th, td {
-            font-size: 12px;
-        }
-
-        th, td {
-            padding: 4px;
-        }
-
-        input[type="text"],
-        textarea {
-            font-size: 13px;
-        }
-
-        .tests-table .obs-col {
-            display: none;
-        }
-    }
-
-    /* IMPRESSÃO */
-    @media print {
-        @page {
-            margin: 15mm;
-            size: A4;
-        }
-
-        * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        body {
-            background: #fff;
-            padding: 0;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 100%;
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        button, 
-        input[type="file"], 
-        .remove-btn {
-            display: none !important;
-        }
-
-        .section {
-            page-break-inside: avoid;
-            margin-top: 15px;
-        }
-
-        .header {
-            page-break-after: avoid;
-        }
-
-        table {
-            page-break-inside: avoid;
-        }
-
-        .tests-table {
-            page-break-inside: auto;
-        }
-
-        .tests-table tr {
-            page-break-inside: avoid;
-            page-break-after: auto;
-        }
-
-        .photo-box {
-            border: 1px solid #000;
-            page-break-inside: avoid;
-            border-radius: 4px;
-            transform: none !important;
-        }
-
-        .photo-box:hover {
-            transform: none !important;
-        }
-
-        .photos {
-            page-break-inside: avoid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .signature {
-            page-break-inside: avoid;
-            margin-top: 30px;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        textarea {
-            border-bottom: 1px solid #ddd;
-        }
-
-        /* Garante que checkboxes apareçam */
-        input[type="checkbox"] {
-            -webkit-appearance: checkbox;
-            appearance: checkbox;
-        }
-    }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
-    <!-- HEADER -->
     <div class="header">
         <div class="logo-box">
-            <img src="ChatGPT Image 22_11_2025, 09_21_16.png" alt="Logo da empresa">
+            <img id="logoImg" src="" alt="Logo" crossorigin="anonymous" style="display: none;">
         </div>
         <div class="title-box">
             <h1>Checklist de Entrada</h1>
@@ -427,17 +314,17 @@
         <table>
             <tr>
                 <td style="width: 100px;">Nome:</td>
-                <td colspan="3"><input type="text"></td>
+                <td colspan="3"><input type="text" id="clienteNome"></td>
             </tr>
             <tr>
                 <td>Telefone:</td>
-                <td><input type="text"></td>
+                <td><input type="text" id="clienteTelefone"></td>
                 <td style="width: 80px;">E-mail:</td>
-                <td><input type="text"></td>
+                <td><input type="text" id="clienteEmail"></td>
             </tr>
             <tr>
                 <td>CPF/CNPJ:</td>
-                <td colspan="3"><input type="text"></td>
+                <td colspan="3"><input type="text" id="clienteDoc"></td>
             </tr>
         </table>
     </div>
@@ -448,37 +335,37 @@
             <tr>
                 <td style="width: 130px;">Tipo:</td>
                 <td>
-                    <label><input type="checkbox"> Desktop</label>
-                    <label><input type="checkbox"> Notebook</label>
-                    <label><input type="checkbox"> All-in-One</label>
+                    <label><input type="checkbox" id="tipoDesktop"> Desktop</label>
+                    <label><input type="checkbox" id="tipoNotebook"> Notebook</label>
+                    <label><input type="checkbox" id="tipoAllInOne"> All-in-One</label>
                 </td>
             </tr>
             <tr>
                 <td>Marca / Modelo:</td>
-                <td><input type="text"></td>
+                <td><input type="text" id="equipMarca"></td>
             </tr>
             <tr>
                 <td>Série / Service Tag:</td>
-                <td><input type="text"></td>
+                <td><input type="text" id="equipSerie"></td>
             </tr>
             <tr>
                 <td>Acompanha:</td>
                 <td>
-                    <label><input type="checkbox"> Carregador</label>
-                    <label><input type="checkbox"> Cabo</label>
-                    <label><input type="checkbox"> Outros</label>
+                    <label><input type="checkbox" id="acompCarregador"> Carregador</label>
+                    <label><input type="checkbox" id="acompCabo"> Cabo</label>
+                    <label><input type="checkbox" id="acompOutros"> Outros</label>
                 </td>
             </tr>
             <tr>
                 <td>Senha Windows:</td>
-                <td><input type="text"></td>
+                <td><input type="text" id="equipSenha"></td>
             </tr>
             <tr>
                 <td>Condição física:</td>
                 <td>
-                    <label><input type="checkbox"> Riscos</label>
-                    <label><input type="checkbox"> Amassados</label>
-                    <label><input type="checkbox"> Trincas</label>
+                    <label><input type="checkbox" id="condRiscos"> Riscos</label>
+                    <label><input type="checkbox" id="condAmassados"> Amassados</label>
+                    <label><input type="checkbox" id="condTrincas"> Trincas</label>
                 </td>
             </tr>
         </table>
@@ -491,91 +378,91 @@
                 <th>Item</th>
                 <th class="center" style="width: 50px;">OK</th>
                 <th class="center" style="width: 50px;">NOK</th>
-                <th class="obs-col">Observações</th>
+                <th>Observações</th>
             </tr>
             <tr>
                 <td>Liga</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="liga-ok"></td>
+                <td class="center"><input type="checkbox" data-test="liga-nok"></td>
+                <td><input type="text" data-test="liga-obs"></td>
             </tr>
             <tr>
                 <td>Dá vídeo</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="video-ok"></td>
+                <td class="center"><input type="checkbox" data-test="video-nok"></td>
+                <td><input type="text" data-test="video-obs"></td>
             </tr>
             <tr>
                 <td>Reinicia sozinho</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="reinicia-ok"></td>
+                <td class="center"><input type="checkbox" data-test="reinicia-nok"></td>
+                <td><input type="text" data-test="reinicia-obs"></td>
             </tr>
             <tr>
                 <td>Aquecimento</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="aquecimento-ok"></td>
+                <td class="center"><input type="checkbox" data-test="aquecimento-nok"></td>
+                <td><input type="text" data-test="aquecimento-obs"></td>
             </tr>
             <tr>
                 <td>USB / HDMI</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="usb-ok"></td>
+                <td class="center"><input type="checkbox" data-test="usb-nok"></td>
+                <td><input type="text" data-test="usb-obs"></td>
             </tr>
             <tr>
                 <td>Wi-Fi</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="wifi-ok"></td>
+                <td class="center"><input type="checkbox" data-test="wifi-nok"></td>
+                <td><input type="text" data-test="wifi-obs"></td>
             </tr>
             <tr>
-                <td>Ethernet (Rede cabeada)</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td>Ethernet</td>
+                <td class="center"><input type="checkbox" data-test="ethernet-ok"></td>
+                <td class="center"><input type="checkbox" data-test="ethernet-nok"></td>
+                <td><input type="text" data-test="ethernet-obs"></td>
             </tr>
             <tr>
                 <td>Bluetooth</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="bluetooth-ok"></td>
+                <td class="center"><input type="checkbox" data-test="bluetooth-nok"></td>
+                <td><input type="text" data-test="bluetooth-obs"></td>
             </tr>
             <tr>
-                <td>Áudio (Caixas/Fones)</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td>Áudio</td>
+                <td class="center"><input type="checkbox" data-test="audio-ok"></td>
+                <td class="center"><input type="checkbox" data-test="audio-nok"></td>
+                <td><input type="text" data-test="audio-obs"></td>
             </tr>
             <tr>
                 <td>Microfone</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="mic-ok"></td>
+                <td class="center"><input type="checkbox" data-test="mic-nok"></td>
+                <td><input type="text" data-test="mic-obs"></td>
             </tr>
             <tr>
                 <td>Teclado</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="teclado-ok"></td>
+                <td class="center"><input type="checkbox" data-test="teclado-nok"></td>
+                <td><input type="text" data-test="teclado-obs"></td>
             </tr>
             <tr>
                 <td>Touchpad/Mouse</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="mouse-ok"></td>
+                <td class="center"><input type="checkbox" data-test="mouse-nok"></td>
+                <td><input type="text" data-test="mouse-obs"></td>
             </tr>
             <tr>
                 <td>Bateria</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="bateria-ok"></td>
+                <td class="center"><input type="checkbox" data-test="bateria-nok"></td>
+                <td><input type="text" data-test="bateria-obs"></td>
             </tr>
             <tr>
                 <td>Webcam</td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="center"><input type="checkbox"></td>
-                <td class="obs-col"><input type="text"></td>
+                <td class="center"><input type="checkbox" data-test="webcam-ok"></td>
+                <td class="center"><input type="checkbox" data-test="webcam-nok"></td>
+                <td><input type="text" data-test="webcam-obs"></td>
             </tr>
         </table>
     </div>
@@ -592,7 +479,7 @@
         <div class="section-title">Problema Relatado pelo Cliente</div>
         <table>
             <tr>
-                <td><textarea style="min-height: 80px;"></textarea></td>
+                <td><textarea id="problemaRelatado"></textarea></td>
             </tr>
         </table>
     </div>
@@ -601,7 +488,7 @@
         <div class="section-title">Observações Gerais</div>
         <table>
             <tr>
-                <td><textarea style="min-height: 80px;"></textarea></td>
+                <td><textarea id="observacoes"></textarea></td>
             </tr>
         </table>
     </div>
@@ -612,35 +499,185 @@
             Assinatura do Técnico
         </div>
         <div>
-            <div class="line"></div>
-            Assinatura do Cliente
+            <div style="min-height: 100px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <canvas id="assinaturaPreview" width="300" height="80" style="border: 1px solid #ccc; display: none;"></canvas>
+                <div id="assinaturaPlaceholder" style="color: #999;">Clique no botão abaixo para assinar</div>
+            </div>
+            <button onclick="abrirAssinatura()" style="margin-top: 10px; background: #2196F3; color: white; border: none;">✍️ Assinar Aqui</button>
+            <button onclick="limparAssinaturaCliente()" style="margin-top: 10px; background: #f44336; color: white; border: none; display: none;" id="btnLimparAssinatura">🗑️ Limpar</button>
+            <div style="margin-top: 5px; font-size: 12px;">Assinatura do Cliente</div>
+        </div>
+    </div>
+
+    <!-- Modal de Assinatura -->
+    <div id="modalAssinatura" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="fecharAssinatura()">&times;</span>
+            <div class="modal-header">Assinatura do Cliente</div>
+            <p style="text-align: center; color: #666; margin-bottom: 15px;">Desenhe sua assinatura abaixo:</p>
+            <canvas id="canvasAssinatura" class="signature-pad" width="500" height="200"></canvas>
+            <div class="signature-controls">
+                <button onclick="limparCanvas()" style="background: #ff9800; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">🔄 Limpar</button>
+                <button onclick="salvarAssinatura()" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">✓ Salvar Assinatura</button>
+            </div>
         </div>
     </div>
 
     <button onclick="gerarPDF()">📄 Gerar PDF</button>
     <button onclick="window.print()">🖨️ Imprimir</button>
-
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-// Define a data atual ao carregar a página
+window.jsPDF = window.jspdf.jsPDF;
+
+// ============================================
+// COLE AQUI A SUA LOGO EM BASE64
+// ============================================
+const LOGO_BASE64 = '';
+// Exemplo:
+// const LOGO_BASE64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...';
+// ============================================
+
+// ============================================
+// COLE AQUI A SUA ASSINATURA EM BASE64
+// ============================================
+const ASSINATURA_BASE64 = '';
+// Exemplo:
+// const ASSINATURA_BASE64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...';
+// Dimensões da imagem: 1826x308
+// ============================================
+
 window.addEventListener('DOMContentLoaded', () => {
     const hoje = new Date();
     const ano = hoje.getFullYear();
     const mes = String(hoje.getMonth() + 1).padStart(2, '0');
     const dia = String(hoje.getDate()).padStart(2, '0');
-    const dataFormatada = `${ano}-${mes}-${dia}`;
+    document.getElementById('dataEntrada').value = `${ano}-${mes}-${dia}`;
     
-    document.getElementById('dataEntrada').value = dataFormatada;
+    // Carregar logo se estiver definida
+    if (LOGO_BASE64) {
+        const logoImg = document.getElementById('logoImg');
+        logoImg.src = LOGO_BASE64;
+        logoImg.style.display = 'block';
+    }
+    
+    // Inicializar canvas de assinatura
+    inicializarCanvas();
 });
 
 let photosArray = [];
+let logoBase64 = LOGO_BASE64 || null;
+let assinaturaClienteBase64 = null;
+let canvas, ctx, desenhando = false;
+
+function inicializarCanvas() {
+    canvas = document.getElementById('canvasAssinatura');
+    ctx = canvas.getContext('2d');
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    
+    // Mouse events
+    canvas.addEventListener('mousedown', iniciarDesenho);
+    canvas.addEventListener('mousemove', desenhar);
+    canvas.addEventListener('mouseup', pararDesenho);
+    canvas.addEventListener('mouseout', pararDesenho);
+    
+    // Touch events para mobile
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('mousedown', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    });
+    
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('mousemove', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    });
+    
+    canvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        const mouseEvent = new MouseEvent('mouseup', {});
+        canvas.dispatchEvent(mouseEvent);
+    });
+}
+
+function iniciarDesenho(e) {
+    desenhando = true;
+    const rect = canvas.getBoundingClientRect();
+    ctx.beginPath();
+    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+}
+
+function desenhar(e) {
+    if (!desenhando) return;
+    const rect = canvas.getBoundingClientRect();
+    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.stroke();
+}
+
+function pararDesenho() {
+    desenhando = false;
+}
+
+function limparCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function abrirAssinatura() {
+    document.getElementById('modalAssinatura').style.display = 'flex';
+    limparCanvas();
+}
+
+function fecharAssinatura() {
+    document.getElementById('modalAssinatura').style.display = 'none';
+}
+
+function salvarAssinatura() {
+    assinaturaClienteBase64 = canvas.toDataURL('image/png');
+    
+    // Mostrar preview
+    const preview = document.getElementById('assinaturaPreview');
+    const placeholder = document.getElementById('assinaturaPlaceholder');
+    const btnLimpar = document.getElementById('btnLimparAssinatura');
+    
+    preview.style.display = 'block';
+    placeholder.style.display = 'none';
+    btnLimpar.style.display = 'inline-block';
+    
+    const previewCtx = preview.getContext('2d');
+    const img = new Image();
+    img.onload = function() {
+        previewCtx.clearRect(0, 0, preview.width, preview.height);
+        previewCtx.drawImage(img, 0, 0, preview.width, preview.height);
+    };
+    img.src = assinaturaClienteBase64;
+    
+    fecharAssinatura();
+    alert('Assinatura salva com sucesso!');
+}
+
+function limparAssinaturaCliente() {
+    if (confirm('Deseja limpar a assinatura do cliente?')) {
+        assinaturaClienteBase64 = null;
+        document.getElementById('assinaturaPreview').style.display = 'none';
+        document.getElementById('assinaturaPlaceholder').style.display = 'block';
+        document.getElementById('btnLimparAssinatura').style.display = 'none';
+    }
+}
 
 function previewPhotos(event) {
-    const container = document.getElementById("photos");
     const files = Array.from(event.target.files);
-    
     files.forEach(file => {
         const reader = new FileReader();
         reader.onload = e => {
@@ -649,21 +686,17 @@ function previewPhotos(event) {
         };
         reader.readAsDataURL(file);
     });
-    
     event.target.value = '';
 }
 
 function renderPhotos() {
     const container = document.getElementById("photos");
     container.innerHTML = "";
-    
     photosArray.forEach((photoData, index) => {
         const div = document.createElement("div");
         div.className = "photo-box";
-        
         const img = document.createElement("img");
         img.src = photoData;
-        
         const removeBtn = document.createElement("button");
         removeBtn.className = "remove-btn";
         removeBtn.innerHTML = "×";
@@ -671,7 +704,6 @@ function renderPhotos() {
             e.stopPropagation();
             removePhoto(index);
         };
-        
         div.appendChild(img);
         div.appendChild(removeBtn);
         container.appendChild(div);
@@ -688,47 +720,322 @@ function limparFotos() {
         alert('Não há fotos para limpar!');
         return;
     }
-    
     if (confirm('Deseja remover todas as fotos?')) {
         photosArray = [];
         renderPhotos();
     }
 }
 
-function gerarPDF() {
-    const botoes = document.querySelectorAll('button');
-    const removeBtns = document.querySelectorAll('.remove-btn');
-    const fileInput = document.getElementById('fileInput');
+function desenharCheckbox(doc, x, y, checked, size = 4) {
+    doc.rect(x, y, size, size);
+    if (checked) {
+        doc.line(x, y, x + size, y + size);
+        doc.line(x + size, y, x, y + size);
+    }
+}
+
+function desenharTabela(doc, x, y, largura, altura, colunas, dados) {
+    let currentY = y;
     
-    botoes.forEach(btn => btn.style.display = 'none');
-    removeBtns.forEach(btn => btn.style.display = 'none');
-    fileInput.style.display = 'none';
+    // Cabeçalho
+    doc.setFillColor(240, 240, 240);
+    doc.rect(x, currentY, largura, 8, 'FD');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
     
-    const elemento = document.querySelector('.container');
-    
-    const opcoes = {
-        margin: [10, 10, 10, 10],
-        filename: 'checklist-entrada.pdf',
-        image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: { 
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            letterRendering: true
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait',
-            compress: true
-        },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
-    
-    html2pdf().set(opcoes).from(elemento).save().then(() => {
-        botoes.forEach(btn => btn.style.display = '');
-        removeBtns.forEach(btn => btn.style.display = '');
+    let currentX = x;
+    colunas.forEach(col => {
+        doc.text(col.titulo, currentX + 2, currentY + 5.5);
+        currentX += col.largura;
     });
+    
+    currentY += 8;
+    doc.setFont('helvetica', 'normal');
+    
+    // Linhas de dados
+    dados.forEach(linha => {
+        currentX = x;
+        
+        colunas.forEach((col, i) => {
+            doc.rect(currentX, currentY, col.largura, 7);
+            
+            if (linha[i] && linha[i].tipo === 'checkbox') {
+                desenharCheckbox(doc, currentX + col.largura/2 - 2, currentY + 1.5, linha[i].checked);
+            } else {
+                doc.setFontSize(9);
+                const texto = linha[i] || '';
+                doc.text(String(texto), currentX + 2, currentY + 4.5);
+            }
+            
+            currentX += col.largura;
+        });
+        
+        currentY += 7;
+    });
+    
+    return currentY;
+}
+
+function gerarPDF() {
+    const doc = new jsPDF();
+    let yPos = 15;
+    
+    // LOGO (se houver)
+    if (logoBase64) {
+        try {
+            doc.addImage(logoBase64, 'PNG', 15, yPos, 30, 20);
+        } catch (e) {
+            console.error('Erro ao adicionar logo:', e);
+        }
+    }
+    
+    // HEADER
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Checklist de Entrada', 105, yPos + 8, { align: 'center' });
+    yPos += 15;
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Assistência Técnica', 105, yPos, { align: 'center' });
+    yPos += 10;
+    doc.setLineWidth(0.5);
+    doc.line(15, yPos, 195, yPos);
+    yPos += 10;
+    
+    // Data de Entrada
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Data de Entrada', 15, yPos);
+    yPos += 6;
+    
+    yPos = desenharTabela(doc, 15, yPos, 180, 7, 
+        [{titulo: 'Data', largura: 40}, {titulo: '', largura: 140}],
+        [['Data:', document.getElementById('dataEntrada').value || '']]
+    );
+    yPos += 5;
+    
+    // Dados do Cliente
+    doc.setFont('helvetica', 'bold');
+    doc.text('Dados do Cliente', 15, yPos);
+    yPos += 6;
+    
+    yPos = desenharTabela(doc, 15, yPos, 180, 7,
+        [{titulo: 'Campo', largura: 40}, {titulo: 'Informação', largura: 140}],
+        [
+            ['Nome:', document.getElementById('clienteNome').value || ''],
+            ['Telefone:', document.getElementById('clienteTelefone').value || ''],
+            ['E-mail:', document.getElementById('clienteEmail').value || ''],
+            ['CPF/CNPJ:', document.getElementById('clienteDoc').value || '']
+        ]
+    );
+    yPos += 5;
+    
+    // Dados do Equipamento
+    doc.setFont('helvetica', 'bold');
+    doc.text('Dados do Equipamento', 15, yPos);
+    yPos += 6;
+    
+    const tipos = [];
+    if (document.getElementById('tipoDesktop').checked) tipos.push('Desktop');
+    if (document.getElementById('tipoNotebook').checked) tipos.push('Notebook');
+    if (document.getElementById('tipoAllInOne').checked) tipos.push('All-in-One');
+    
+    const acomp = [];
+    if (document.getElementById('acompCarregador').checked) acomp.push('Carregador');
+    if (document.getElementById('acompCabo').checked) acomp.push('Cabo');
+    if (document.getElementById('acompOutros').checked) acomp.push('Outros');
+    
+    const cond = [];
+    if (document.getElementById('condRiscos').checked) cond.push('Riscos');
+    if (document.getElementById('condAmassados').checked) cond.push('Amassados');
+    if (document.getElementById('condTrincas').checked) cond.push('Trincas');
+    
+    yPos = desenharTabela(doc, 15, yPos, 180, 7,
+        [{titulo: 'Campo', largura: 50}, {titulo: 'Informação', largura: 130}],
+        [
+            ['Tipo:', tipos.join(', ') || ''],
+            ['Marca/Modelo:', document.getElementById('equipMarca').value || ''],
+            ['Série/Service Tag:', document.getElementById('equipSerie').value || ''],
+            ['Acompanha:', acomp.join(', ') || ''],
+            ['Senha Windows:', document.getElementById('equipSenha').value || ''],
+            ['Condição física:', cond.join(', ') || '']
+        ]
+    );
+    yPos += 5;
+    
+    // Testes de Entrada
+    if (yPos > 150) {
+        doc.addPage();
+        yPos = 15;
+    }
+    
+    doc.setFont('helvetica', 'bold');
+    doc.text('Testes de Entrada', 15, yPos);
+    yPos += 6;
+    
+    const testes = [
+        'Liga', 'Dá vídeo', 'Reinicia sozinho', 'Aquecimento', 'USB / HDMI',
+        'Wi-Fi', 'Ethernet', 'Bluetooth', 'Áudio', 'Microfone',
+        'Teclado', 'Touchpad/Mouse', 'Bateria', 'Webcam'
+    ];
+    
+    const testesIds = [
+        'liga', 'video', 'reinicia', 'aquecimento', 'usb',
+        'wifi', 'ethernet', 'bluetooth', 'audio', 'mic',
+        'teclado', 'mouse', 'bateria', 'webcam'
+    ];
+    
+    const dadosTestes = testes.map((teste, i) => {
+        const ok = document.querySelector(`[data-test="${testesIds[i]}-ok"]`)?.checked;
+        const nok = document.querySelector(`[data-test="${testesIds[i]}-nok"]`)?.checked;
+        const obs = document.querySelector(`[data-test="${testesIds[i]}-obs"]`)?.value || '';
+        
+        return [
+            teste,
+            { tipo: 'checkbox', checked: ok },
+            { tipo: 'checkbox', checked: nok },
+            obs
+        ];
+    });
+    
+    yPos = desenharTabela(doc, 15, yPos, 180, 7,
+        [
+            {titulo: 'Item', largura: 60},
+            {titulo: 'OK', largura: 15},
+            {titulo: 'NOK', largura: 15},
+            {titulo: 'Observações', largura: 90}
+        ],
+        dadosTestes
+    );
+    yPos += 5;
+    
+    // Fotos
+    if (photosArray.length > 0) {
+        if (yPos > 240) {
+            doc.addPage();
+            yPos = 15;
+        }
+        
+        doc.setFontSize(11);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Fotos do Equipamento', 15, yPos);
+        yPos += 8;
+        
+        let xPos = 15;
+        let fotosPorLinha = 0;
+        
+        photosArray.forEach((photo, index) => {
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 15;
+                xPos = 15;
+                fotosPorLinha = 0;
+            }
+            
+            try {
+                doc.addImage(photo, 'JPEG', xPos, yPos, 50, 40);
+                xPos += 55;
+                fotosPorLinha++;
+                
+                if (fotosPorLinha >= 3) {
+                    yPos += 45;
+                    xPos = 15;
+                    fotosPorLinha = 0;
+                }
+            } catch (e) {
+                console.error('Erro ao adicionar foto:', e);
+            }
+        });
+        
+        if (fotosPorLinha > 0) yPos += 45;
+    }
+    
+    // Problema Relatado
+    if (yPos > 220) {
+        doc.addPage();
+        yPos = 15;
+    }
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Problema Relatado pelo Cliente', 15, yPos);
+    yPos += 6;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    
+    const problema = document.getElementById('problemaRelatado').value || 'Não informado';
+    const linhasProblema = doc.splitTextToSize(problema, 175);
+    
+    // Desenhar caixa
+    const alturaProblema = Math.max(linhasProblema.length * 5 + 4, 15);
+    doc.rect(15, yPos, 180, alturaProblema);
+    doc.text(linhasProblema, 17, yPos + 5);
+    yPos += alturaProblema + 5;
+    
+    // Observações
+    if (yPos > 220) {
+        doc.addPage();
+        yPos = 15;
+    }
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Observações Gerais', 15, yPos);
+    yPos += 6;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    
+    const obs = document.getElementById('observacoes').value || 'Nenhuma';
+    const linhasObs = doc.splitTextToSize(obs, 175);
+    
+    // Desenhar caixa
+    const alturaObs = Math.max(linhasObs.length * 5 + 4, 15);
+    doc.rect(15, yPos, 180, alturaObs);
+    doc.text(linhasObs, 17, yPos + 5);
+    yPos += alturaObs + 15;
+    
+    // Assinaturas
+    if (yPos > 250) {
+        doc.addPage();
+        yPos = 15;
+    }
+    
+    // Assinatura do Técnico (com imagem se houver)
+    if (ASSINATURA_BASE64) {
+        try {
+            // Proporção original: 1826x308 = aproximadamente 6:1
+            const larguraAssinatura = 60;
+            const alturaAssinatura = 10;
+            doc.addImage(ASSINATURA_BASE64, 'PNG', 15, yPos, larguraAssinatura, alturaAssinatura);
+            yPos += alturaAssinatura + 2;
+        } catch (e) {
+            console.error('Erro ao adicionar assinatura do técnico:', e);
+        }
+    }
+    
+    doc.line(15, yPos, 80, yPos);
+    yPos += 5;
+    doc.text('Assinatura do Técnico', 47.5, yPos, { align: 'center' });
+    
+    // Assinatura do Cliente
+    let yPosCliente = yPos - 5;
+    if (assinaturaClienteBase64) {
+        try {
+            yPosCliente -= 17;
+            doc.addImage(assinaturaClienteBase64, 'PNG', 115, yPosCliente, 65, 17);
+            yPosCliente += 17 + 2;
+        } catch (e) {
+            console.error('Erro ao adicionar assinatura do cliente:', e);
+        }
+    }
+    
+    doc.line(115, yPosCliente, 180, yPosCliente);
+    yPosCliente += 5;
+    doc.text('Assinatura do Cliente', 147.5, yPosCliente, { align: 'center' });
+    
+    // Salvar
+    const dataAtual = new Date().toISOString().split('T')[0];
+    doc.save(`checklist-entrada-${dataAtual}.pdf`);
 }
 </script>
 
