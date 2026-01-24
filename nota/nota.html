@@ -12,6 +12,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
+<style>
+.btn-voltar {
+    background-color: #4CAF50; /* verde bonito */
+    color: white; /* texto branco */
+    padding: 12px 24px; /* espaço interno do botão */
+    border: none; /* tira a borda padrão */
+    border-radius: 8px; /* cantos arredondados */
+    font-size: 16px; /* tamanho da fonte */
+    cursor: pointer; /* muda o cursor ao passar por cima */
+    transition: background-color 0.3s, transform 0.2s; /* animação suave */
+}
+
+.btn-voltar:hover {
+    background-color: #45a049; /* verde mais escuro ao passar o mouse */
+    transform: scale(1.05); /* botão dá uma leve aumentada */
+}
+
+.btn-voltar:active {
+    transform: scale(0.95); /* efeito de clique */
+}
+</style>
 <body>
     <div class="container">
         <!-- Header da empresa -->
@@ -27,10 +48,7 @@
                     </div>
                 </div>
                 <div class="header-stats">
-                    <div class="stat">
-                        <span class="stat-number" id="current-date"></span>
-                        <span class="stat-label" id="data">Data</span>
-                    </div>
+                    <button class="btn-voltar">Voltar para a página inicial</button>
                 </div>
             </div>
         </div>
@@ -403,6 +421,12 @@ function adicionarFotoPreview(imgBase64) {
     wrapper.appendChild(btnRemover);
     preview.appendChild(wrapper);
 }
+</script>
+
+<script>
+document.querySelector('.btn-voltar').addEventListener('click', function() {
+    window.location.href = '/index.html';
+});
 </script>
 
 </body>
