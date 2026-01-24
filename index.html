@@ -220,37 +220,125 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0,0,0,0.95);
         align-items: center;
         justify-content: center;
     }
 
     .modal-content {
         background-color: #fff;
-        padding: 30px;
+        padding: 20px;
         border-radius: 10px;
-        max-width: 600px;
-        width: 90%;
+        max-width: 95vw;
+        max-height: 95vh;
+        width: 100%;
+        height: 100%;
         box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
     }
 
     .modal-header {
         font-size: 20px;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         text-align: center;
+        flex-shrink: 0;
     }
 
     .close-modal {
-        float: right;
-        font-size: 28px;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 35px;
         font-weight: bold;
         cursor: pointer;
         color: #666;
+        z-index: 10;
     }
 
     .close-modal:hover {
         color: #000;
+    }
+
+    .canvas-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+        position: relative;
+    }
+
+    .signature-pad {
+        border: 3px solid #000;
+        border-radius: 8px;
+        cursor: crosshair;
+        background: white;
+        max-width: 100%;
+        max-height: 100%;
+        touch-action: none;
+    }
+
+    .signature-controls {
+        margin-top: 15px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+    }
+
+    .signature-controls button {
+        padding: 15px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        min-width: 150px;
+    }
+
+    .rotate-message {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #2196F3;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        font-size: 18px;
+        text-align: center;
+        z-index: 1001;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) and (orientation: portrait) {
+        .rotate-message {
+            display: block;
+        }
+        
+        .modal-content {
+            opacity: 0.3;
+        }
+    }
+
+    @media (orientation: landscape) {
+        .modal-content {
+            padding: 15px;
+        }
+        
+        .modal-header {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .signature-controls button {
+            padding: 12px 25px;
+            font-size: 14px;
+            min-width: 120px;
+        }
     }
 
     button {
@@ -511,14 +599,19 @@
 
     <!-- Modal de Assinatura -->
     <div id="modalAssinatura" class="modal">
+        <div class="rotate-message">
+            📱 Vire seu celular na horizontal<br>para assinar
+        </div>
         <div class="modal-content">
             <span class="close-modal" onclick="fecharAssinatura()">&times;</span>
-            <div class="modal-header">Assinatura do Cliente</div>
-            <p style="text-align: center; color: #666; margin-bottom: 15px;">Desenhe sua assinatura abaixo:</p>
-            <canvas id="canvasAssinatura" class="signature-pad" width="500" height="200"></canvas>
+            <div class="modal-header">✍️ Assinatura do Cliente</div>
+            <p style="text-align: center; color: #666; margin-bottom: 10px; flex-shrink: 0;">Desenhe sua assinatura abaixo:</p>
+            <div class="canvas-container">
+                <canvas id="canvasAssinatura" class="signature-pad"></canvas>
+            </div>
             <div class="signature-controls">
-                <button onclick="limparCanvas()" style="background: #ff9800; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">🔄 Limpar</button>
-                <button onclick="salvarAssinatura()" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">✓ Salvar Assinatura</button>
+                <button onclick="limparCanvas()" style="background: #ff9800; color: white; border: none;">🔄 Limpar</button>
+                <button onclick="salvarAssinatura()" style="background: #4CAF50; color: white; border: none;">✓ Salvar Assinatura</button>
             </div>
         </div>
     </div>
@@ -574,9 +667,13 @@ let canvas, ctx, desenhando = false;
 function inicializarCanvas() {
     canvas = document.getElementById('canvasAssinatura');
     ctx = canvas.getContext('2d');
+    
+    ajustarTamanhoCanvas();
+    
     ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 3;
     ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
     
     // Mouse events
     canvas.addEventListener('mousedown', iniciarDesenho);
@@ -588,28 +685,60 @@ function inicializarCanvas() {
     canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
-        const mouseEvent = new MouseEvent('mousedown', {
-            clientX: touch.clientX,
-            clientY: touch.clientY
-        });
-        canvas.dispatchEvent(mouseEvent);
-    });
+        const rect = canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        
+        desenhando = true;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    }, { passive: false });
     
     canvas.addEventListener('touchmove', (e) => {
         e.preventDefault();
+        if (!desenhando) return;
+        
         const touch = e.touches[0];
-        const mouseEvent = new MouseEvent('mousemove', {
-            clientX: touch.clientX,
-            clientY: touch.clientY
-        });
-        canvas.dispatchEvent(mouseEvent);
-    });
+        const rect = canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    }, { passive: false });
     
     canvas.addEventListener('touchend', (e) => {
         e.preventDefault();
-        const mouseEvent = new MouseEvent('mouseup', {});
-        canvas.dispatchEvent(mouseEvent);
+        desenhando = false;
+    }, { passive: false });
+    
+    // Ajustar canvas quando girar o celular
+    window.addEventListener('resize', () => {
+        if (document.getElementById('modalAssinatura').style.display === 'flex') {
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            ajustarTamanhoCanvas();
+            ctx.putImageData(imgData, 0, 0);
+        }
     });
+}
+
+function ajustarTamanhoCanvas() {
+    const container = document.querySelector('.canvas-container');
+    if (!container) return;
+    
+    const rect = container.getBoundingClientRect();
+    const maxWidth = rect.width - 40;
+    const maxHeight = rect.height - 40;
+    
+    // Usar 90% do espaço disponível
+    canvas.width = maxWidth * 0.9;
+    canvas.height = maxHeight * 0.9;
+    
+    // Reconfigurar estilo do contexto após redimensionar
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
 }
 
 function iniciarDesenho(e) {
@@ -636,7 +765,12 @@ function limparCanvas() {
 
 function abrirAssinatura() {
     document.getElementById('modalAssinatura').style.display = 'flex';
-    limparCanvas();
+    
+    // Pequeno delay para garantir que o modal está visível
+    setTimeout(() => {
+        ajustarTamanhoCanvas();
+        limparCanvas();
+    }, 100);
 }
 
 function fecharAssinatura() {
