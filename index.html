@@ -227,34 +227,38 @@
 
     .modal-content {
         background-color: #fff;
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
-        max-width: 95vw;
-        max-height: 95vh;
+        max-width: 98vw;
+        max-height: 98vh;
         width: 100%;
         height: 100%;
         box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     .modal-header {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         text-align: center;
         flex-shrink: 0;
+        padding-top: 20px;
     }
 
     .close-modal {
         position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 35px;
+        top: 5px;
+        right: 10px;
+        font-size: 30px;
         font-weight: bold;
         cursor: pointer;
         color: #666;
         z-index: 10;
+        padding: 5px 15px;
+        line-height: 1;
     }
 
     .close-modal:hover {
@@ -266,8 +270,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 10px 0;
+        margin: 5px 0;
         position: relative;
+        min-height: 0;
+        overflow: hidden;
     }
 
     .signature-pad {
@@ -278,10 +284,12 @@
         max-width: 100%;
         max-height: 100%;
         touch-action: none;
+        display: block;
     }
 
     .signature-controls {
-        margin-top: 15px;
+        margin-top: 10px;
+        padding: 0 5px 5px 5px;
         display: flex;
         gap: 10px;
         justify-content: center;
@@ -290,12 +298,13 @@
     }
 
     .signature-controls button {
-        padding: 15px 30px;
-        font-size: 16px;
+        padding: 12px 25px;
+        font-size: 15px;
         border-radius: 8px;
         cursor: pointer;
         font-weight: bold;
-        min-width: 150px;
+        min-width: 130px;
+        flex: 1;
     }
 
     .rotate-message {
@@ -326,18 +335,46 @@
 
     @media (orientation: landscape) {
         .modal-content {
-            padding: 15px;
+            padding: 10px;
         }
         
         .modal-header {
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 16px;
+            margin-bottom: 5px;
+            padding-top: 15px;
+        }
+        
+        .signature-controls {
+            margin-top: 8px;
+            padding-bottom: 3px;
         }
         
         .signature-controls button {
-            padding: 12px 25px;
+            padding: 10px 20px;
             font-size: 14px;
-            min-width: 120px;
+            min-width: 110px;
+        }
+        
+        .canvas-container {
+            margin: 3px 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .modal-header {
+            font-size: 16px;
+        }
+        
+        .signature-controls button {
+            min-width: 0;
+            padding: 10px 15px;
+            font-size: 13px;
+        }
+        
+        .close-modal {
+            font-size: 25px;
+            right: 5px;
+            top: 3px;
         }
     }
 
@@ -604,14 +641,13 @@
         </div>
         <div class="modal-content">
             <span class="close-modal" onclick="fecharAssinatura()">&times;</span>
-            <div class="modal-header">✍️ Assinatura do Cliente</div>
-            <p style="text-align: center; color: #666; margin-bottom: 10px; flex-shrink: 0;">Desenhe sua assinatura abaixo:</p>
+            <div class="modal-header">✍️ Assine aqui</div>
             <div class="canvas-container">
                 <canvas id="canvasAssinatura" class="signature-pad"></canvas>
             </div>
             <div class="signature-controls">
                 <button onclick="limparCanvas()" style="background: #ff9800; color: white; border: none;">🔄 Limpar</button>
-                <button onclick="salvarAssinatura()" style="background: #4CAF50; color: white; border: none;">✓ Salvar Assinatura</button>
+                <button onclick="salvarAssinatura()" style="background: #4CAF50; color: white; border: none;">✓ Salvar</button>
             </div>
         </div>
     </div>
@@ -727,12 +763,14 @@ function ajustarTamanhoCanvas() {
     if (!container) return;
     
     const rect = container.getBoundingClientRect();
-    const maxWidth = rect.width - 40;
-    const maxHeight = rect.height - 40;
     
-    // Usar 90% do espaço disponível
-    canvas.width = maxWidth * 0.9;
-    canvas.height = maxHeight * 0.9;
+    // Usar mais espaço disponível
+    const maxWidth = Math.floor(rect.width - 20);
+    const maxHeight = Math.floor(rect.height - 20);
+    
+    // Garantir que tenha tamanho mínimo
+    canvas.width = Math.max(maxWidth, 300);
+    canvas.height = Math.max(maxHeight, 150);
     
     // Reconfigurar estilo do contexto após redimensionar
     ctx.strokeStyle = '#000';
