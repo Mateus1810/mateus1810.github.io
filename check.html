@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Checklist de Entrada</title>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #eee;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #000;
+    }
+
+    /* HEADER COM LOGO */
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .logo-box {
+        width: 160px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo-box img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .title-box {
+        flex: 1;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    .section {
+        margin-top: 20px;
+    }
+
+    .section-title {
+        font-weight: bold;
+        border-bottom: 1px solid #000;
+        margin-bottom: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    table, th, td {
+        border: 1px solid #000;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 60px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .photos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .photo-box {
+        width: 180px;
+        height: 120px;
+        border: 1px dashed #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        overflow: hidden;
+    }
+
+    .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .signature {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .signature div {
+        width: 45%;
+        text-align: center;
+    }
+
+    .line {
+        border-bottom: 1px solid #000;
+        margin-top: 40px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    @media print {
+        button, input[type="file"] {
+            display: none;
+        }
+        body {
+            background: #fff;
+            padding: 0;
+        }
+        .container {
+            border: none;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-box">
+            <img src="ChatGPT Image 22_11_2025, 09_21_16.png" alt="Logo da empresa">
+        </div>
+        <div class="title-box">
+            <h1>Checklist de Entrada</h1>
+            <h2>Assistência Técnica</h2>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Data de Entrada</div>
+        <table>
+            <tr>
+                <td>Data:</td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Dados do Cliente</div>
+        <table>
+            <tr>
+                <td>Nome:</td>
+                <td colspan="3"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Telefone:</td>
+                <td><input type="text"></td>
+                <td>E-mail:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>CPF/CNPJ:</td>
+                <td colspan="3"><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Dados do Equipamento</div>
+        <table>
+            <tr>
+                <td>Tipo:</td>
+                <td>
+                    <label><input type="checkbox"> Desktop</label>
+                    <label><input type="checkbox"> Notebook</label>
+                    <label><input type="checkbox"> All-in-One</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Marca / Modelo:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Série / Service Tag:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Acompanha:</td>
+                <td>
+                    <label><input type="checkbox"> Carregador</label>
+                    <label><input type="checkbox"> Cabo</label>
+                    <label><input type="checkbox"> Outros</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Senha Windows:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Condição física:</td>
+                <td>
+                    <label><input type="checkbox"> Riscos</label>
+                    <label><input type="checkbox"> Amassados</label>
+                    <label><input type="checkbox"> Trincas</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Testes de Entrada</div>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th class="center">OK</th>
+                <th class="center">NOK</th>
+                <th>Observações</th>
+            </tr>
+            <tr><td>Liga</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            <tr><td>Dá vídeo</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            <tr><td>Reinicia sozinho</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            <tr><td>Aquecimento</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            <tr><td>USB / HDMI</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            <tr><td>Rede</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Fotos do Equipamento (Entrada)</div>
+        <input type="file" multiple accept="image/*" onchange="previewPhotos(event)">
+        <div class="photos" id="photos"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Problema Relatado pelo Cliente</div>
+        <textarea></textarea>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Observações Gerais</div>
+        <textarea></textarea>
+    </div>
+
+    <div class="signature">
+        <div>
+            <div class="line"></div>
+            Assinatura do Técnico
+        </div>
+        <div>
+            <div class="line"></div>
+            Assinatura do Cliente
+        </div>
+    </div>
+
+    <button onclick="window.print()">Imprimir</button>
+
+</div>
+
+<script>
+function previewPhotos(event) {
+    const container = document.getElementById("photos");
+    container.innerHTML = "";
+
+    Array.from(event.target.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const div = document.createElement("div");
+            div.className = "photo-box";
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            div.appendChild(img);
+            container.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+</script>
+
+</body>
+</html>
