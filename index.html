@@ -2,39 +2,46 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checklist de Entrada</title>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         font-family: Arial, Helvetica, sans-serif;
         background: #eee;
-        padding: 20px;
+        padding: 10px;
+        margin: 0;
     }
 
     .container {
         max-width: 900px;
         margin: auto;
         background: #fff;
-        padding: 20px;
+        padding: 15px;
         border: 1px solid #000;
     }
 
-    /* HEADER COM LOGO */
+    /* HEADER */
     .header {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
         border-bottom: 2px solid #000;
         padding-bottom: 10px;
         margin-bottom: 20px;
     }
 
     .logo-box {
-        width: 160px;
-        height: 80px;
+        width: 100px;
+        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
     }
 
     .logo-box img {
@@ -44,12 +51,11 @@
 
     .title-box {
         flex: 1;
-        text-align: center;
     }
 
     h1 {
-        font-size: 22px;
-        margin: 0;
+        font-size: 20px;
+        margin: 0 0 5px 0;
     }
 
     h2 {
@@ -60,18 +66,22 @@
 
     .section {
         margin-top: 20px;
+        page-break-inside: avoid;
     }
 
     .section-title {
         font-weight: bold;
         border-bottom: 1px solid #000;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        font-size: 16px;
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
         font-size: 14px;
+        table-layout: fixed;
     }
 
     table, th, td {
@@ -79,83 +89,309 @@
     }
 
     th, td {
-        padding: 6px;
+        padding: 8px;
+        word-wrap: break-word;
     }
 
     input[type="text"],
+    input[type="date"],
     textarea {
         width: 100%;
         border: none;
         outline: none;
         font-size: 14px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        background: transparent;
     }
 
     textarea {
         resize: vertical;
-        height: 60px;
+        min-height: 60px;
     }
 
     .center {
         text-align: center;
     }
 
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    label {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-right: 10px;
+    }
+
     .photos {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 10px;
         margin-top: 10px;
     }
 
     .photo-box {
-        width: 180px;
-        height: 120px;
-        border: 1px dashed #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
+        width: 100%;
+        padding-top: 75%;
+        position: relative;
+        border: 2px dashed #666;
         overflow: hidden;
+        border-radius: 8px;
+        background: #f9f9f9;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .photo-box:hover {
+        border-color: #333;
+        transform: scale(1.05);
     }
 
     .photo-box img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
+    .photo-box .remove-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+        z-index: 10;
+        padding: 0;
+        margin: 0;
+    }
+
+    .photo-box .remove-btn:hover {
+        background: darkred;
+    }
+
     .signature {
         margin-top: 40px;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        page-break-inside: avoid;
     }
 
     .signature div {
-        width: 45%;
         text-align: center;
     }
 
     .line {
         border-bottom: 1px solid #000;
         margin-top: 40px;
+        margin-bottom: 5px;
     }
 
     button {
-        margin-top: 20px;
-        padding: 8px 16px;
+        margin-top: 15px;
+        margin-right: 10px;
+        padding: 12px 20px;
         font-size: 14px;
         cursor: pointer;
+        border: 1px solid #000;
+        background: #f0f0f0;
     }
 
-    @media print {
-        button, input[type="file"] {
+    button:active {
+        background: #ddd;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 18px;
+        }
+
+        h2 {
+            font-size: 12px;
+        }
+
+        .header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .logo-box {
+            width: 80px;
+            height: 50px;
+        }
+
+        table, th, td {
+            font-size: 13px;
+        }
+
+        th, td {
+            padding: 6px;
+        }
+
+        .tests-table {
+            font-size: 12px;
+        }
+
+        .tests-table td, .tests-table th {
+            padding: 5px 3px;
+        }
+
+        input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+        }
+
+        .signature {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .photos {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+
+        button {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 8px;
+        }
+
+        h1 {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 14px;
+        }
+
+        table, th, td {
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 4px;
+        }
+
+        input[type="text"],
+        textarea {
+            font-size: 13px;
+        }
+
+        .tests-table .obs-col {
             display: none;
         }
+    }
+
+    /* IMPRESSÃO */
+    @media print {
+        @page {
+            margin: 15mm;
+            size: A4;
+        }
+
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
         body {
             background: #fff;
             padding: 0;
+            margin: 0;
         }
+
         .container {
+            max-width: 100%;
             border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        button, 
+        input[type="file"], 
+        .remove-btn {
+            display: none !important;
+        }
+
+        .section {
+            page-break-inside: avoid;
+            margin-top: 15px;
+        }
+
+        .header {
+            page-break-after: avoid;
+        }
+
+        table {
+            page-break-inside: avoid;
+        }
+
+        .tests-table {
+            page-break-inside: auto;
+        }
+
+        .tests-table tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+
+        .photo-box {
+            border: 1px solid #000;
+            page-break-inside: avoid;
+            border-radius: 4px;
+            transform: none !important;
+        }
+
+        .photo-box:hover {
+            transform: none !important;
+        }
+
+        .photos {
+            page-break-inside: avoid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .signature {
+            page-break-inside: avoid;
+            margin-top: 30px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Garante que checkboxes apareçam */
+        input[type="checkbox"] {
+            -webkit-appearance: checkbox;
+            appearance: checkbox;
         }
     }
 </style>
@@ -180,8 +416,8 @@
         <div class="section-title">Data de Entrada</div>
         <table>
             <tr>
-                <td>Data:</td>
-                <td><input type="text"></td>
+                <td style="width: 100px;">Data:</td>
+                <td><input type="date" id="dataEntrada"></td>
             </tr>
         </table>
     </div>
@@ -190,13 +426,13 @@
         <div class="section-title">Dados do Cliente</div>
         <table>
             <tr>
-                <td>Nome:</td>
+                <td style="width: 100px;">Nome:</td>
                 <td colspan="3"><input type="text"></td>
             </tr>
             <tr>
                 <td>Telefone:</td>
                 <td><input type="text"></td>
-                <td>E-mail:</td>
+                <td style="width: 80px;">E-mail:</td>
                 <td><input type="text"></td>
             </tr>
             <tr>
@@ -210,7 +446,7 @@
         <div class="section-title">Dados do Equipamento</div>
         <table>
             <tr>
-                <td>Tipo:</td>
+                <td style="width: 130px;">Tipo:</td>
                 <td>
                     <label><input type="checkbox"> Desktop</label>
                     <label><input type="checkbox"> Notebook</label>
@@ -250,36 +486,124 @@
 
     <div class="section">
         <div class="section-title">Testes de Entrada</div>
-        <table>
+        <table class="tests-table">
             <tr>
                 <th>Item</th>
-                <th class="center">OK</th>
-                <th class="center">NOK</th>
-                <th>Observações</th>
+                <th class="center" style="width: 50px;">OK</th>
+                <th class="center" style="width: 50px;">NOK</th>
+                <th class="obs-col">Observações</th>
             </tr>
-            <tr><td>Liga</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
-            <tr><td>Dá vídeo</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
-            <tr><td>Reinicia sozinho</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
-            <tr><td>Aquecimento</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
-            <tr><td>USB / HDMI</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
-            <tr><td>Rede</td><td class="center"><input type="checkbox"></td><td class="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            <tr>
+                <td>Liga</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Dá vídeo</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Reinicia sozinho</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Aquecimento</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>USB / HDMI</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Wi-Fi</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Ethernet (Rede cabeada)</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Bluetooth</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Áudio (Caixas/Fones)</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Microfone</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Teclado</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Touchpad/Mouse</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Bateria</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Webcam</td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="center"><input type="checkbox"></td>
+                <td class="obs-col"><input type="text"></td>
+            </tr>
         </table>
     </div>
 
     <div class="section">
         <div class="section-title">Fotos do Equipamento (Entrada)</div>
-        <input type="file" multiple accept="image/*" onchange="previewPhotos(event)">
+        <input type="file" id="fileInput" multiple accept="image/*" onchange="previewPhotos(event)" style="display: none;">
+        <button type="button" onclick="document.getElementById('fileInput').click()">📷 Adicionar Fotos</button>
+        <button type="button" onclick="limparFotos()" style="background: #ffdddd;">🗑️ Limpar Fotos</button>
         <div class="photos" id="photos"></div>
     </div>
 
     <div class="section">
         <div class="section-title">Problema Relatado pelo Cliente</div>
-        <textarea></textarea>
+        <table>
+            <tr>
+                <td><textarea style="min-height: 80px;"></textarea></td>
+            </tr>
+        </table>
     </div>
 
     <div class="section">
         <div class="section-title">Observações Gerais</div>
-        <textarea></textarea>
+        <table>
+            <tr>
+                <td><textarea style="min-height: 80px;"></textarea></td>
+            </tr>
+        </table>
     </div>
 
     <div class="signature">
@@ -293,31 +617,120 @@
         </div>
     </div>
 
-    <button onclick="window.print()">Imprimir</button>
+    <button onclick="gerarPDF()">📄 Gerar PDF</button>
+    <button onclick="window.print()">🖨️ Imprimir</button>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
+// Define a data atual ao carregar a página
+window.addEventListener('DOMContentLoaded', () => {
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const dataFormatada = `${ano}-${mes}-${dia}`;
+    
+    document.getElementById('dataEntrada').value = dataFormatada;
+});
+
+let photosArray = [];
+
 function previewPhotos(event) {
     const container = document.getElementById("photos");
-    container.innerHTML = "";
-
-    Array.from(event.target.files).forEach(file => {
+    const files = Array.from(event.target.files);
+    
+    files.forEach(file => {
         const reader = new FileReader();
         reader.onload = e => {
-            const div = document.createElement("div");
-            div.className = "photo-box";
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            div.appendChild(img);
-            container.appendChild(div);
+            photosArray.push(e.target.result);
+            renderPhotos();
         };
         reader.readAsDataURL(file);
+    });
+    
+    event.target.value = '';
+}
+
+function renderPhotos() {
+    const container = document.getElementById("photos");
+    container.innerHTML = "";
+    
+    photosArray.forEach((photoData, index) => {
+        const div = document.createElement("div");
+        div.className = "photo-box";
+        
+        const img = document.createElement("img");
+        img.src = photoData;
+        
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
+        removeBtn.innerHTML = "×";
+        removeBtn.onclick = (e) => {
+            e.stopPropagation();
+            removePhoto(index);
+        };
+        
+        div.appendChild(img);
+        div.appendChild(removeBtn);
+        container.appendChild(div);
+    });
+}
+
+function removePhoto(index) {
+    photosArray.splice(index, 1);
+    renderPhotos();
+}
+
+function limparFotos() {
+    if (photosArray.length === 0) {
+        alert('Não há fotos para limpar!');
+        return;
+    }
+    
+    if (confirm('Deseja remover todas as fotos?')) {
+        photosArray = [];
+        renderPhotos();
+    }
+}
+
+function gerarPDF() {
+    const botoes = document.querySelectorAll('button');
+    const removeBtns = document.querySelectorAll('.remove-btn');
+    const fileInput = document.getElementById('fileInput');
+    
+    botoes.forEach(btn => btn.style.display = 'none');
+    removeBtns.forEach(btn => btn.style.display = 'none');
+    fileInput.style.display = 'none';
+    
+    const elemento = document.querySelector('.container');
+    
+    const opcoes = {
+        margin: [10, 10, 10, 10],
+        filename: 'checklist-entrada.pdf',
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            letterRendering: true
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait',
+            compress: true
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+    
+    html2pdf().set(opcoes).from(elemento).save().then(() => {
+        botoes.forEach(btn => btn.style.display = '');
+        removeBtns.forEach(btn => btn.style.display = '');
     });
 }
 </script>
 
 </body>
 </html>
-
-
