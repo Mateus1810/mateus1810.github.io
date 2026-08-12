@@ -4,6 +4,30 @@
     var CARD_DEFAULT_W = 90;
     var CARD_DEFAULT_H = 50;
 
+    var CARD_FONT_FAMILIES = {
+        'Arial': 'Arial, Helvetica, sans-serif',
+        'Segoe UI': '"Segoe UI", Arial, sans-serif',
+        'Verdana': 'Verdana, Geneva, sans-serif',
+        'Tahoma': 'Tahoma, Verdana, sans-serif',
+        'Trebuchet MS': '"Trebuchet MS", Arial, sans-serif',
+        'Georgia': 'Georgia, "Times New Roman", serif',
+        'Times New Roman': '"Times New Roman", Times, serif',
+        'Palatino Linotype': '"Palatino Linotype", Palatino, Georgia, serif',
+        'Courier New': '"Courier New", Courier, monospace',
+        'Arial Black': '"Arial Black", Arial, sans-serif',
+        'Impact': 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
+        'Lucida Sans Unicode': '"Lucida Sans Unicode", "Lucida Grande", sans-serif'
+    };
+
+    function cardFontName(value) {
+        return Object.prototype.hasOwnProperty.call(CARD_FONT_FAMILIES, value) ? value : 'Arial';
+    }
+
+    function cardFontCss(value) {
+        return CARD_FONT_FAMILIES[cardFontName(value)];
+    }
+
+
     /*
      * Font Awesome Free 7.3.1 — SVG icon metadata from the official package.
      * Icons are licensed under CC BY 4.0: https://fontawesome.com/license/free
@@ -115,6 +139,7 @@
         if (element.type === 'text') {
             node.textContent = escapeText(element.text);
             node.style.color = element.color || '#111111';
+            node.style.fontFamily = cardFontCss(element.fontFamily);
             node.style.fontWeight = element.fontWeight || '500';
             node.style.textAlign = element.align || 'left';
             node.style.fontSize = Math.max(4, (element.fontSize || 8) * 0.352778 * (pxPerMm || 4)) + 'px';
@@ -233,10 +258,11 @@
             return { x: x * sx, y: y * sy, w: w * sx, h: h * sy };
         }
 
-        function text(id, key, x, y, w, h, value, size, weight, color, align) {
+        function text(id, key, x, y, w, h, value, size, weight, color, align, fontFamily) {
             return Object.assign({
                 id: id, type: 'text', key: key || '',
-                text: value, fontSize: size, fontWeight: String(weight),
+                text: value, fontFamily: cardFontName(fontFamily || 'Arial'),
+                fontSize: size, fontWeight: String(weight),
                 color: color, align: align || 'left'
             }, box(x, y, w, h));
         }
@@ -251,6 +277,145 @@
 
         function qr(id, x, y, w, h) {
             return Object.assign({ id: id, type: 'qr', key: 'qr', value: values.qr }, box(x, y, w, h));
+        }
+
+        function icon(id, x, y, w, h, iconName, color, iconStyle) {
+            return Object.assign({
+                id: id,
+                type: 'icon',
+                key: '',
+                iconStyle: iconStyle === 'brands' ? 'brands' : 'solid',
+                iconName: iconName,
+                color: color || '#111111'
+            }, box(x, y, w, h));
+        }
+
+        if (name === 'digitaldrift') {
+            /*
+             * Digital Drift — Referência fiel
+             * Reproduz o mais de perto possível o cartão enviado:
+             * frente com marca grande, quatro serviços, contatos na base;
+             * verso com endereço, site, QR e rodapé técnico escuro/azul.
+             */
+            var dv = Object.assign({}, values);
+
+            if (!dv.whatsapp || dv.whatsapp === '(00) 00000-0000') dv.whatsapp = '(33) 98402-4108';
+            if (!dv.phone || dv.phone === '(00) 0000-0000') dv.phone = '(33) 98402-4108';
+            if (!dv.email || dv.email === 'contato@empresa.com') dv.email = 'digitaldrift2000@gmail.com';
+            if (!dv.address || dv.address === 'Rua Exemplo, 123 - Centro') dv.address = 'R. Raimundo Martins, 20\nSanta Luzia — Manhuaçu/MG';
+            if (!dv.site || dv.site === 'www.seusite.com.br') dv.site = 'mateus1810.github.io';
+            if (!dv.qr || dv.qr === 'https://seusite.com.br') dv.qr = 'https://mateus1810.github.io';
+
+            var previousQr = values.qr;
+            values.qr = dv.qr;
+            var ddQr = qr('dd-back-qr', 61.8, 7.8, 16.7, 16.7);
+            values.qr = previousQr;
+
+            var frontElements = [
+                rect('dd-front-accent', 0, 0, 2.6, 50, '#0f57ea'),
+
+                text('dd-front-digital', '', 6.8, 5.1, 28.5, 6.0, 'DIGITAL', 13.4, 900, '#10151d', 'left', 'Segoe UI'),
+                text('dd-front-drift', '', 6.8, 11.8, 23.0, 6.0, 'DRIFT', 13.3, 900, '#1a55e2', 'left', 'Segoe UI'),
+                rect('dd-front-topline', 6.9, 22.1, 5.0, .42, '#1a55e2', 'line'),
+                text('dd-front-subtitle', '', 12.8, 20.5, 27.0, 2.9, 'SOLUÇÕES EM TECNOLOGIA', 3.55, 500, '#363c46', 'left', 'Segoe UI'),
+
+                icon('dd-front-service-1-icon', 6.5, 27.6, 4.1, 4.1, 'desktop', '#1a55e2'),
+                text('dd-front-service-1', '', 11.7, 27.9, 13.4, 3.7, 'Suporte técnico', 4.7, 700, '#161b22', 'left', 'Segoe UI'),
+                rect('dd-front-service-sep-1', 29.1, 28.0, .18, 4.2, '#aeb3bb', 'line'),
+
+                icon('dd-front-service-2-icon', 32.5, 27.6, 4.1, 4.1, 'network-wired', '#1a55e2'),
+                text('dd-front-service-2', '', 37.8, 27.9, 7.2, 3.7, 'Redes', 4.7, 700, '#161b22', 'left', 'Segoe UI'),
+                rect('dd-front-service-sep-2', 47.3, 28.0, .18, 4.2, '#aeb3bb', 'line'),
+
+                icon('dd-front-service-3-icon', 50.7, 27.6, 4.1, 4.1, 'screwdriver-wrench', '#1a55e2'),
+                text('dd-front-service-3', '', 56.0, 27.9, 11.2, 3.7, 'Manutenção', 4.7, 700, '#161b22', 'left', 'Segoe UI'),
+                rect('dd-front-service-sep-3', 69.8, 28.0, .18, 4.2, '#aeb3bb', 'line'),
+
+                icon('dd-front-service-4-icon', 72.5, 27.6, 4.1, 4.1, 'cloud', '#1a55e2'),
+                text('dd-front-service-4', '', 77.8, 27.4, 9.8, 5.4, 'Soluções\nem TI', 4.45, 700, '#161b22', 'left', 'Segoe UI'),
+
+                text('dd-front-tagline', '', 6.8, 34.8, 49.0, 3.5, 'Soluções eficientes. Atendimento de confiança.', 4.55, 400, '#505864', 'left', 'Segoe UI'),
+                rect('dd-front-divider', 6.8, 39.1, 78.0, .22, '#c6cad2', 'line'),
+
+                icon('dd-front-whatsapp-icon', 6.5, 41.0, 4.9, 4.9, 'whatsapp', '#1cb03a', 'brands'),
+                text('dd-front-whatsapp-number', 'whatsapp', 12.1, 41.0, 19.0, 3.5, dv.whatsapp, 5.35, 700, '#151a20', 'left', 'Segoe UI'),
+                text('dd-front-whatsapp-label', '', 12.1, 44.5, 9.0, 2.7, 'WhatsApp', 4.2, 400, '#606773', 'left', 'Segoe UI'),
+
+                rect('dd-front-contact-sep', 31.9, 41.3, .18, 5.7, '#b7bcc5', 'line'),
+
+                icon('dd-front-email-icon', 35.0, 41.1, 4.6, 4.6, 'envelope', '#1a55e2'),
+                text('dd-front-email-value', 'email', 40.5, 41.0, 42.0, 3.4, dv.email, 4.9, 700, '#151a20', 'left', 'Segoe UI'),
+                text('dd-front-email-label', '', 40.5, 44.5, 7.0, 2.7, 'E-mail', 4.2, 400, '#606773', 'left', 'Segoe UI')
+            ];
+
+            if (logoSrc) {
+                frontElements.push(logo('dd-front-logo', 72.0, 4.3, 13.5, 17.0));
+            } else {
+                frontElements.push(text('dd-front-logo-top', '', 73.0, 5.3, 12.5, 4.0, 'DIGITAL', 5.4, 800, '#12171e', 'center', 'Segoe UI'));
+                frontElements.push(text('dd-front-logo-mid', '', 73.0, 9.2, 12.5, 4.0, 'DRIFT', 5.4, 800, '#12171e', 'center', 'Segoe UI'));
+                frontElements.push(text('dd-front-logo-bottom', '', 73.0, 13.0, 12.5, 2.4, 'SOLUÇÕES', 3.0, 700, '#1a55e2', 'center', 'Segoe UI'));
+            }
+
+            return {
+                front: {
+                    background: '#f7f8fb',
+                    elements: frontElements
+                },
+                back: {
+                    background: '#f7f8fb',
+                    elements: [
+                        text('dd-back-heading-black', '', 5.8, 5.0, 14.8, 3.8, 'ATENDIMENTO', 5.25, 800, '#12171e', 'left', 'Segoe UI'),
+                        text('dd-back-heading-blue', '', 21.5, 5.0, 30.5, 3.8, 'PRESENCIAL E REMOTO', 5.25, 800, '#1a55e2', 'left', 'Segoe UI'),
+                        rect('dd-back-title-line', 5.9, 9.5, 4.9, .42, '#1a55e2', 'line'),
+
+                        icon('dd-back-location-icon', 6.6, 13.8, 5.0, 5.0, 'location-dot', '#1a55e2'),
+                        text('dd-back-address-line1', '', 13.0, 13.8, 29.0, 3.4, 'R. Raimundo Martins, 20', 6.15, 700, '#151a20', 'left', 'Segoe UI'),
+                        text('dd-back-address-line2', '', 13.0, 17.5, 30.0, 3.4, 'Santa Luzia — Manhuaçu/MG', 5.4, 400, '#515964', 'left', 'Segoe UI'),
+
+                        icon('dd-back-site-icon', 6.6, 23.7, 5.0, 5.0, 'globe', '#1a55e2'),
+                        text('dd-back-site-main', 'site', 13.0, 23.7, 30.0, 3.4, dv.site, 6.15, 700, '#151a20', 'left', 'Segoe UI'),
+                        text('dd-back-site-caption', '', 13.0, 27.2, 18.5, 2.9, 'Visite nosso site', 4.55, 400, '#515964', 'left', 'Segoe UI'),
+
+                        rect('dd-back-col-divider', 50.9, 6.4, .18, 27.6, '#d0d4db', 'line'),
+
+                        ddQr,
+
+                        rect('dd-back-qr-tl-h', 59.7, 6.3, 2.8, .28, '#1a55e2', 'line'),
+                        rect('dd-back-qr-tl-v', 59.7, 6.3, .28, 2.8, '#1a55e2', 'line'),
+                        rect('dd-back-qr-tr-h', 76.0, 6.3, 2.8, .28, '#1a55e2', 'line'),
+                        rect('dd-back-qr-tr-v', 78.5, 6.3, .28, 2.8, '#1a55e2', 'line'),
+                        rect('dd-back-qr-bl-h', 59.7, 24.2, 2.8, .28, '#1a55e2', 'line'),
+                        rect('dd-back-qr-bl-v', 59.7, 21.7, .28, 2.8, '#1a55e2', 'line'),
+                        rect('dd-back-qr-br-h', 76.0, 24.2, 2.8, .28, '#1a55e2', 'line'),
+                        rect('dd-back-qr-br-v', 78.5, 21.7, .28, 2.8, '#1a55e2', 'line'),
+
+                        text('dd-back-qr-title', '', 57.8, 28.4, 23.5, 3.2, 'CONHEÇA NOSSOS SERVIÇOS', 4.8, 800, '#1a55e2', 'center', 'Segoe UI'),
+                        text('dd-back-qr-caption', '', 58.8, 31.7, 22.0, 2.9, 'Escaneie o código com a câmera', 4.15, 400, '#555d68', 'center', 'Segoe UI'),
+
+                        rect('dd-back-footer-black', 0, 38.0, 90, 12.0, '#121822'),
+                        rect('dd-back-footer-blue-1', 50.0, 44.0, 9.0, 6.0, '#1553d8'),
+                        rect('dd-back-footer-blue-2', 59.0, 43.0, 9.0, 7.0, '#1553d8'),
+                        rect('dd-back-footer-blue-3', 68.0, 42.0, 8.0, 8.0, '#1553d8'),
+                        rect('dd-back-footer-blue-4', 76.0, 41.0, 7.0, 9.0, '#1553d8'),
+                        rect('dd-back-footer-blue-5', 83.0, 40.0, 7.0, 10.0, '#1553d8'),
+
+                        icon('dd-back-footer-icon', 6.0, 40.6, 4.9, 4.9, 'shield-halved', '#1e56de'),
+                        text('dd-back-footer-copy', '', 11.5, 40.3, 30.0, 5.6, 'Informática, redes e suporte\nonde você precisar.', 4.9, 400, '#ffffff', 'left', 'Segoe UI'),
+
+                        rect('dd-back-dot-1', 77.6, 45.3, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-2', 79.2, 45.3, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-3', 80.8, 45.3, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-4', 82.4, 45.3, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-5', 84.0, 45.3, .35, .35, '#4f82ff'),
+
+                        rect('dd-back-dot-6', 77.6, 47.0, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-7', 79.2, 47.0, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-8', 80.8, 47.0, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-9', 82.4, 47.0, .35, .35, '#4f82ff'),
+                        rect('dd-back-dot-10', 84.0, 47.0, .35, .35, '#4f82ff')
+                    ]
+                }
+            };
         }
 
         if (name === 'light') {
@@ -569,7 +734,12 @@
             if (!el) return;
             panel.querySelectorAll('[data-prop]').forEach(function (input) {
                 var key = input.getAttribute('data-prop');
-                if (el[key] != null) input.value = el[key];
+                if (key === 'fontFamily') {
+                    input.value = cardFontName(el.fontFamily);
+                    input.style.fontFamily = cardFontCss(el.fontFamily);
+                } else if (el[key] != null) {
+                    input.value = el[key];
+                }
             });
             panel.querySelectorAll('.prop-text-row').forEach(function (row) { row.style.display = el.type === 'text' ? '' : 'none'; });
             panel.querySelectorAll('.prop-qr-row').forEach(function (row) { row.style.display = el.type === 'qr' ? '' : 'none'; });
@@ -605,6 +775,7 @@
             var el = this.getSelected();
             if (!el) return;
             if (['x', 'y', 'w', 'h', 'fontSize', 'opacity'].indexOf(key) !== -1) value = parseFloat(value || 0);
+            if (key === 'fontFamily') value = cardFontName(value);
             el[key] = value;
             this.boundElement(el);
             this.render();
@@ -665,7 +836,7 @@
         addElement: function (type) {
             var design = this.currentDesign();
             var el = { id: uniqueId(type), type: type, key: '', x: 10, y: 10, w: 30, h: 8 };
-            if (type === 'text') Object.assign(el, { text: 'Novo texto', fontSize: 9, fontWeight: '600', color: '#111111', align: 'left' });
+            if (type === 'text') Object.assign(el, { text: 'Novo texto', fontFamily: 'Arial', fontSize: 9, fontWeight: '600', color: '#111111', align: 'left' });
             if (type === 'qr') Object.assign(el, { value: 'https://', w: 20, h: 20 });
             if (type === 'line') Object.assign(el, { color: '#111111', w: 45, h: 0.7 });
             if (type === 'rect') Object.assign(el, { color: '#2563eb', w: 24, h: 10 });
@@ -954,7 +1125,7 @@
             } else if (el.type === 'text') {
                 var px = (el.fontSize || 8) * 25.4 / 72 * sx;
                 ctx.fillStyle = el.color || '#111111';
-                ctx.font = (el.fontWeight || '500') + ' ' + Math.max(10, px) + 'px Arial, sans-serif';
+                ctx.font = (el.fontWeight || '500') + ' ' + Math.max(10, px) + 'px ' + cardFontCss(el.fontFamily);
                 ctx.textBaseline = 'top';
                 ctx.textAlign = el.align || 'left';
                 var tx = el.align === 'right' ? x + w : (el.align === 'center' ? x + w / 2 : x);
