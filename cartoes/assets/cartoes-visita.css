@@ -3178,3 +3178,209 @@ body.dark .cartoes-github-warning{color:#f8b85d!important}
   .cartoes-github-actions>*{flex:1 1 100%}
   .cartoes-github-actions button,.cartoes-github-actions a{width:100%;box-sizing:border-box}
 }
+
+
+/* =========================================================
+   V11 — SELEÇÃO DE FONTE DOS TEXTOS
+========================================================= */
+.cartoes-prop-grid .cartoes-prop-full{
+  grid-column:1 / -1;
+}
+
+.cartoes-font-select{
+  min-height:38px;
+  font-size:13px;
+}
+
+.cartoes-font-select option{
+  font-size:14px;
+}
+
+.cartoes-editor-page.cartoes-theme-dark .cartoes-font-select{
+  background:#15161d!important;
+  color:#eef0f5!important;
+}
+
+@media(max-width:520px){
+  .cartoes-prop-grid .cartoes-prop-full{
+    grid-column:1 / -1;
+  }
+}
+
+
+/* =========================================================
+   V12 — MODELO DIGITAL DRIFT / AZUL TÉCNICO
+========================================================= */
+.cartoes-template-featured{
+  border-color:rgba(49,88,232,.32);
+  background:linear-gradient(180deg,rgba(49,88,232,.055),transparent),var(--bc-surface);
+}
+.cartoes-template-featured:hover{
+  border-color:#3158e8;
+}
+
+.template-digitaldrift{
+  background:#f8faff;
+}
+.template-digitaldrift::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3%;
+  background:#0757e8;
+}
+.template-digitaldrift i{
+  left:8%;
+  top:13%;
+  width:42%;
+  height:15%;
+  border-radius:2px;
+  background:#10141b;
+}
+.template-digitaldrift b{
+  left:8%;
+  top:31%;
+  width:32%;
+  height:12%;
+  border-radius:2px;
+  background:#1553d8;
+}
+.template-digitaldrift em{
+  right:8%;
+  top:11%;
+  width:18%;
+  height:31%;
+  border-radius:4px;
+  background:linear-gradient(135deg,#12161d 0 55%,#1553d8 56% 100%);
+}
+.template-digitaldrift u{
+  position:absolute;
+  left:8%;
+  right:8%;
+  bottom:13%;
+  height:12%;
+  border-top:1px solid #bfc5ce;
+  text-decoration:none;
+}
+.template-digitaldrift u::before,
+.template-digitaldrift u::after{
+  content:"";
+  position:absolute;
+  top:5px;
+  height:5px;
+  border-radius:2px;
+  background:#1553d8;
+}
+.template-digitaldrift u::before{left:0;width:31%}
+.template-digitaldrift u::after{right:0;width:38%}
+
+
+/* =========================================================
+   V13 — REFINO DO MODELO DIGITAL DRIFT
+========================================================= */
+.cartoes-template-featured .template-digitaldrift{
+  background:#fbfcff;
+  box-shadow:inset 0 0 0 1px rgba(22,35,55,.08);
+}
+.cartoes-template-featured .template-digitaldrift::before{
+  width:2.5%;
+}
+.cartoes-template-featured .template-digitaldrift i{
+  left:8%;
+  top:14%;
+  width:36%;
+  height:11%;
+  background:#151a21;
+}
+.cartoes-template-featured .template-digitaldrift b{
+  left:8%;
+  top:28%;
+  width:29%;
+  height:10%;
+  background:#1553d8;
+}
+.cartoes-template-featured .template-digitaldrift em{
+  right:9%;
+  top:13%;
+  width:14%;
+  height:23%;
+  border-radius:50%;
+  background:#1553d8;
+  opacity:.92;
+}
+.cartoes-template-featured .template-digitaldrift u{
+  left:8%;
+  right:8%;
+  bottom:15%;
+  height:9%;
+  border-top:1px solid #d4d8df;
+}
+
+
+/* =========================================================
+   V14 — TEMPLATE DIGITAL DRIFT / REFERÊNCIA FIEL
+========================================================= */
+.cartoes-template-featured .template-digitaldrift{
+  background:#f7f8fb;
+}
+.cartoes-template-featured .template-digitaldrift::before{
+  width:3%;
+  background:#1553d8;
+}
+.cartoes-template-featured .template-digitaldrift i{
+  left:8%;
+  top:13%;
+  width:38%;
+  height:12%;
+  background:#10151d;
+}
+.cartoes-template-featured .template-digitaldrift b{
+  left:8%;
+  top:28%;
+  width:28%;
+  height:10%;
+  background:#1a55e2;
+}
+.cartoes-template-featured .template-digitaldrift em{
+  right:8%;
+  top:10%;
+  width:17%;
+  height:28%;
+  border-radius:5px;
+  background:linear-gradient(135deg,#11161e 0 58%,#1a55e2 59% 100%);
+}
+.cartoes-template-featured .template-digitaldrift u{
+  left:8%;
+  right:8%;
+  bottom:14%;
+  height:10%;
+  border-top:1px solid #ccd1d9;
+}
+.cartoes-template-featured .template-digitaldrift u::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:4px;
+  width:28%;
+  height:5px;
+  background:#11161e;
+  border-radius:2px;
+}
+.cartoes-template-featured .template-digitaldrift u::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:4px;
+  width:35%;
+  height:5px;
+  background:#1a55e2;
+  border-radius:2px;
+}
+
+
+/* =========================================================
+   V15 — ESCALA VISUAL DO MODELO DE REFERÊNCIA
+========================================================= */
+.cartoes-template-featured .template-digitaldrift{
+  transform:translateZ(0);
+}
