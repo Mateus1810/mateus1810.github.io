@@ -3384,3 +3384,44 @@ body.dark .cartoes-github-warning{color:#f8b85d!important}
 .cartoes-template-featured .template-digitaldrift{
   transform:translateZ(0);
 }
+
+
+/* =========================================================
+   V16 — CÍRCULOS + TEMPLATE DIGITAL DRIFT / REPRODUÇÃO FIEL
+========================================================= */
+.cartoes-template-featured .template-digitaldrift{
+  background:#f7f8fb;
+}
+
+/* =========================================================
+   V22 — CANVA / MODO ESTÁVEL
+========================================================= */
+.cartoes-canva-panel{position:relative;overflow:visible}
+.cartoes-canva-icon{color:#756cf5!important;background:rgba(117,108,245,.12)!important}
+.cartoes-canva-flow{display:grid;gap:7px;margin:12px 0}
+.cartoes-canva-step{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;align-items:start;color:var(--bc-muted);font-size:10.5px;line-height:1.45}
+.cartoes-canva-step b{width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:var(--bc-surface-soft);border:1px solid var(--bc-line);color:var(--bc-ink);font-size:10px}
+.cartoes-canva-step strong{color:var(--bc-ink)}
+.cartoes-canva-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0 12px}
+.cartoes-canva-export-grid .cartoes-btn{width:100%;min-height:54px;justify-content:flex-start;text-align:left}
+.cartoes-canva-export-grid .cartoes-btn>span{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.cartoes-canva-export-grid .cartoes-btn small{font-size:10px;font-weight:400;opacity:.76;line-height:1.3}
+.cartoes-btn-canva{background:#665eea!important;border-color:#665eea!important;color:#fff!important}
+.cartoes-btn-canva:hover{background:#5a52db!important;border-color:#5a52db!important;color:#fff!important}
+.cartoes-canva-image-fallback{margin-top:10px;padding:11px;border:1px solid var(--bc-line);border-radius:11px;background:var(--bc-surface-soft)}
+.cartoes-canva-image-fallback>strong,.cartoes-canva-image-fallback>small{display:block}
+.cartoes-canva-image-fallback>strong{font-size:11px;color:var(--bc-ink)}
+.cartoes-canva-image-fallback>small{margin-top:3px;font-size:9px;color:var(--bc-muted);line-height:1.4}
+.cartoes-canva-image-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
+.cartoes-canva-image-actions .cartoes-btn{width:100%;min-width:0;justify-content:center;padding-left:8px;padding-right:8px}
+.cartoes-canva-return{margin-top:8px}
+.cartoes-native-file-label{display:inline-flex!important;margin-bottom:0!important;cursor:pointer!important;pointer-events:auto!important}
+.cartoes-native-file-input{position:fixed!important;left:-10000px!important;top:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important}
+.cartoes-canva-undo{width:100%;justify-content:center;margin-top:8px}
+.cartoes-canva-undo[hidden]{display:none!important}
+.cartoes-canva-status{display:flex;align-items:flex-start;gap:7px;margin-top:10px;padding:9px 10px;border:1px solid rgba(34,197,94,.25);border-radius:9px;background:rgba(34,197,94,.07);color:#8bdca7;font-size:10px;line-height:1.4}
+.cartoes-canva-status.is-busy{border-color:rgba(59,130,246,.28);background:rgba(59,130,246,.08);color:#8ab9ff}
+.cartoes-canva-status.is-error{border-color:rgba(239,68,68,.28);background:rgba(239,68,68,.08);color:#ff9b9b}
+.cartoes-canva-note{margin:9px 0 0;padding:9px 10px;border-radius:9px;font-size:9.5px;line-height:1.5;color:var(--bc-muted);background:rgba(49,88,232,.06);border:1px solid rgba(49,88,232,.14)}
+.cartoes-canva-note i{margin-right:5px}
+@media(max-width:520px){.cartoes-canva-image-actions{grid-template-columns:1fr}}
