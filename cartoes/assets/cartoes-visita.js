@@ -129,6 +129,12 @@
         var node = document.createElement('div');
         node.className = 'cartoes-design-element cartoes-design-' + element.type;
         node.dataset.elementId = element.id || '';
+        // Estilos fundamentais também ficam inline. Isso faz a visualização,
+        // a captura para Canva e a página pública partirem da mesma geometria.
+        node.style.position = 'absolute';
+        node.style.overflow = 'hidden';
+        node.style.boxSizing = 'border-box';
+        node.style.fontFamily = 'Arial, sans-serif';
         var cardW = sheet.card_width_mm;
         var cardH = sheet.card_height_mm;
         node.style.left = (100 * element.x / cardW) + '%';
@@ -147,11 +153,17 @@
             node.style.whiteSpace = 'pre-wrap';
         } else if (element.type === 'line' || element.type === 'rect') {
             node.style.background = element.color || '#111111';
+        } else if (element.type === 'circle') {
+            node.style.background = element.color || '#111111';
+            node.style.borderRadius = '999px';
         } else if (element.type === 'logo' || element.type === 'image') {
             if (element.src) {
                 var img = document.createElement('img');
                 img.src = element.src;
                 img.alt = element.type === 'logo' ? 'Logo' : 'Imagem';
+                img.style.display = 'block';
+                img.style.width = '100%';
+                img.style.height = '100%';
                 img.style.objectFit = element.type === 'image' && element.fit === 'cover' ? 'cover' : 'contain';
                 img.style.opacity = element.type === 'image' ? clamp(element.opacity == null ? 1 : element.opacity, 0.05, 1) : 1;
                 node.appendChild(img);
@@ -164,7 +176,11 @@
             node.style.display = 'flex';
             node.style.alignItems = 'center';
             node.style.justifyContent = 'center';
-            node.appendChild(createFontAwesomeSvg(element));
+            var iconSvgNode = createFontAwesomeSvg(element);
+            iconSvgNode.style.width = '100%';
+            iconSvgNode.style.height = '100%';
+            iconSvgNode.style.display = 'block';
+            node.appendChild(iconSvgNode);
         } else if (element.type === 'qr') {
             if (element.value) {
                 node.classList.add('mapos-local-qrcode');
@@ -271,6 +287,10 @@
             return Object.assign({ id: id, type: type || 'rect', color: color }, box(x, y, w, h));
         }
 
+        function circle(id, x, y, w, h, color) {
+            return Object.assign({ id: id, type: 'circle', color: color }, box(x, y, w, h));
+        }
+
         function logo(id, x, y, w, h) {
             return Object.assign({ id: id, type: 'logo', key: 'logo', src: logoSrc || '' }, box(x, y, w, h));
         }
@@ -292,10 +312,9 @@
 
         if (name === 'digitaldrift') {
             /*
-             * Digital Drift — Referência fiel
-             * Reproduz o mais de perto possível o cartão enviado:
-             * frente com marca grande, quatro serviços, contatos na base;
-             * verso com endereço, site, QR e rodapé técnico escuro/azul.
+             * Digital Drift — Reprodução fiel
+             * Reconstrução mais literal da imagem enviada, com espaço,
+             * proporções e detalhes mais próximos da arte de referência.
              */
             var dv = Object.assign({}, values);
 
@@ -308,52 +327,56 @@
 
             var previousQr = values.qr;
             values.qr = dv.qr;
-            var ddQr = qr('dd-back-qr', 61.8, 7.8, 16.7, 16.7);
+            var ddQr = qr('dd-back-qr', 60.8, 7.3, 17.4, 17.4);
             values.qr = previousQr;
 
             var frontElements = [
-                rect('dd-front-accent', 0, 0, 2.6, 50, '#0f57ea'),
+                rect('dd-front-accent', 0, 0, 2.7, 50, '#1354e8'),
 
-                text('dd-front-digital', '', 6.8, 5.1, 28.5, 6.0, 'DIGITAL', 13.4, 900, '#10151d', 'left', 'Segoe UI'),
-                text('dd-front-drift', '', 6.8, 11.8, 23.0, 6.0, 'DRIFT', 13.3, 900, '#1a55e2', 'left', 'Segoe UI'),
-                rect('dd-front-topline', 6.9, 22.1, 5.0, .42, '#1a55e2', 'line'),
-                text('dd-front-subtitle', '', 12.8, 20.5, 27.0, 2.9, 'SOLUÇÕES EM TECNOLOGIA', 3.55, 500, '#363c46', 'left', 'Segoe UI'),
+                text('dd-front-digital', '', 6.5, 4.3, 27.5, 6.5, 'DIGITAL', 14.7, 900, '#12161d', 'left', 'Arial Black'),
+                text('dd-front-drift', '', 6.5, 10.8, 24.0, 6.5, 'DRIFT', 14.7, 900, '#1752df', 'left', 'Arial Black'),
+                rect('dd-front-topline', 6.7, 22.1, 5.0, .42, '#1752df', 'line'),
+                text('dd-front-subtitle', '', 12.5, 20.4, 32.5, 2.9, 'SOLUÇÕES EM TECNOLOGIA', 3.65, 500, '#303642', 'left', 'Segoe UI'),
 
-                icon('dd-front-service-1-icon', 6.5, 27.6, 4.1, 4.1, 'desktop', '#1a55e2'),
-                text('dd-front-service-1', '', 11.7, 27.9, 13.4, 3.7, 'Suporte técnico', 4.7, 700, '#161b22', 'left', 'Segoe UI'),
-                rect('dd-front-service-sep-1', 29.1, 28.0, .18, 4.2, '#aeb3bb', 'line'),
+                icon('dd-front-service-1-icon', 6.7, 27.7, 3.7, 3.7, 'desktop', '#1752df'),
+                text('dd-front-service-1', '', 11.6, 27.8, 12.4, 3.6, 'Suporte técnico', 4.45, 700, '#171c23', 'left', 'Segoe UI'),
+                rect('dd-front-service-sep-1', 28.3, 27.9, .18, 4.2, '#b1b6bf', 'line'),
 
-                icon('dd-front-service-2-icon', 32.5, 27.6, 4.1, 4.1, 'network-wired', '#1a55e2'),
-                text('dd-front-service-2', '', 37.8, 27.9, 7.2, 3.7, 'Redes', 4.7, 700, '#161b22', 'left', 'Segoe UI'),
-                rect('dd-front-service-sep-2', 47.3, 28.0, .18, 4.2, '#aeb3bb', 'line'),
+                icon('dd-front-service-2-icon', 32.4, 27.6, 3.9, 3.9, 'network-wired', '#1752df'),
+                text('dd-front-service-2', '', 37.9, 27.8, 7.4, 3.6, 'Redes', 4.45, 700, '#171c23', 'left', 'Segoe UI'),
+                rect('dd-front-service-sep-2', 47.2, 27.9, .18, 4.2, '#b1b6bf', 'line'),
 
-                icon('dd-front-service-3-icon', 50.7, 27.6, 4.1, 4.1, 'screwdriver-wrench', '#1a55e2'),
-                text('dd-front-service-3', '', 56.0, 27.9, 11.2, 3.7, 'Manutenção', 4.7, 700, '#161b22', 'left', 'Segoe UI'),
-                rect('dd-front-service-sep-3', 69.8, 28.0, .18, 4.2, '#aeb3bb', 'line'),
+                icon('dd-front-service-3-icon', 50.7, 27.6, 3.9, 3.9, 'screwdriver-wrench', '#1752df'),
+                text('dd-front-service-3', '', 56.0, 27.8, 10.8, 3.6, 'Manutenção', 4.45, 700, '#171c23', 'left', 'Segoe UI'),
+                rect('dd-front-service-sep-3', 69.5, 27.9, .18, 4.2, '#b1b6bf', 'line'),
 
-                icon('dd-front-service-4-icon', 72.5, 27.6, 4.1, 4.1, 'cloud', '#1a55e2'),
-                text('dd-front-service-4', '', 77.8, 27.4, 9.8, 5.4, 'Soluções\nem TI', 4.45, 700, '#161b22', 'left', 'Segoe UI'),
+                icon('dd-front-service-4-icon', 72.7, 27.6, 3.9, 3.9, 'cloud', '#1752df'),
+                text('dd-front-service-4', '', 77.6, 27.4, 9.2, 5.0, 'Soluções\nem TI', 4.2, 700, '#171c23', 'left', 'Segoe UI'),
 
-                text('dd-front-tagline', '', 6.8, 34.8, 49.0, 3.5, 'Soluções eficientes. Atendimento de confiança.', 4.55, 400, '#505864', 'left', 'Segoe UI'),
-                rect('dd-front-divider', 6.8, 39.1, 78.0, .22, '#c6cad2', 'line'),
+                text('dd-front-tagline', '', 6.7, 34.9, 47.0, 3.0, 'Soluções eficientes. Atendimento de confiança.', 4.35, 400, '#525a66', 'left', 'Segoe UI'),
+                rect('dd-front-divider', 6.7, 39.0, 78.0, .22, '#c8ccd3', 'line'),
 
-                icon('dd-front-whatsapp-icon', 6.5, 41.0, 4.9, 4.9, 'whatsapp', '#1cb03a', 'brands'),
-                text('dd-front-whatsapp-number', 'whatsapp', 12.1, 41.0, 19.0, 3.5, dv.whatsapp, 5.35, 700, '#151a20', 'left', 'Segoe UI'),
-                text('dd-front-whatsapp-label', '', 12.1, 44.5, 9.0, 2.7, 'WhatsApp', 4.2, 400, '#606773', 'left', 'Segoe UI'),
+                circle('dd-front-wa-outer', 6.7, 41.0, 4.9, 4.9, '#19b13d'),
+                circle('dd-front-wa-inner', 7.15, 41.45, 4.0, 4.0, '#ffffff'),
+                icon('dd-front-whatsapp-icon', 7.7, 42.0, 2.9, 2.9, 'whatsapp', '#19b13d', 'brands'),
+                text('dd-front-whatsapp-number', 'whatsapp', 12.3, 41.1, 18.4, 3.3, dv.whatsapp, 5.35, 700, '#171c23', 'left', 'Segoe UI'),
+                text('dd-front-whatsapp-label', '', 12.3, 44.35, 8.3, 2.6, 'WhatsApp', 4.1, 400, '#646c77', 'left', 'Segoe UI'),
 
-                rect('dd-front-contact-sep', 31.9, 41.3, .18, 5.7, '#b7bcc5', 'line'),
+                rect('dd-front-contact-sep', 31.8, 41.3, .18, 5.5, '#b8bcc4', 'line'),
 
-                icon('dd-front-email-icon', 35.0, 41.1, 4.6, 4.6, 'envelope', '#1a55e2'),
-                text('dd-front-email-value', 'email', 40.5, 41.0, 42.0, 3.4, dv.email, 4.9, 700, '#151a20', 'left', 'Segoe UI'),
-                text('dd-front-email-label', '', 40.5, 44.5, 7.0, 2.7, 'E-mail', 4.2, 400, '#606773', 'left', 'Segoe UI')
+                circle('dd-front-mail-outer', 35.6, 41.15, 4.7, 4.7, '#1752df'),
+                circle('dd-front-mail-inner', 36.0, 41.55, 3.9, 3.9, '#ffffff'),
+                icon('dd-front-email-icon', 36.95, 42.4, 2.0, 2.0, 'envelope', '#1752df'),
+                text('dd-front-email-value', 'email', 40.8, 41.15, 40.8, 3.3, dv.email, 4.85, 700, '#171c23', 'left', 'Segoe UI'),
+                text('dd-front-email-label', '', 40.8, 44.35, 6.5, 2.6, 'E-mail', 4.1, 400, '#646c77', 'left', 'Segoe UI')
             ];
 
             if (logoSrc) {
-                frontElements.push(logo('dd-front-logo', 72.0, 4.3, 13.5, 17.0));
+                frontElements.push(logo('dd-front-logo', 71.6, 4.4, 14.4, 16.6));
             } else {
-                frontElements.push(text('dd-front-logo-top', '', 73.0, 5.3, 12.5, 4.0, 'DIGITAL', 5.4, 800, '#12171e', 'center', 'Segoe UI'));
-                frontElements.push(text('dd-front-logo-mid', '', 73.0, 9.2, 12.5, 4.0, 'DRIFT', 5.4, 800, '#12171e', 'center', 'Segoe UI'));
-                frontElements.push(text('dd-front-logo-bottom', '', 73.0, 13.0, 12.5, 2.4, 'SOLUÇÕES', 3.0, 700, '#1a55e2', 'center', 'Segoe UI'));
+                frontElements.push(text('dd-front-logo-fallback-1', '', 72.4, 5.1, 13.0, 3.8, 'DIGITAL', 5.4, 800, '#13181f', 'center', 'Segoe UI'));
+                frontElements.push(text('dd-front-logo-fallback-2', '', 72.4, 9.0, 13.0, 3.8, 'DRIFT', 5.4, 800, '#13181f', 'center', 'Segoe UI'));
+                frontElements.push(text('dd-front-logo-fallback-3', '', 72.4, 12.8, 13.0, 2.4, 'SOLUÇÕES', 3.0, 700, '#1752df', 'center', 'Segoe UI'));
             }
 
             return {
@@ -364,55 +387,55 @@
                 back: {
                     background: '#f7f8fb',
                     elements: [
-                        text('dd-back-heading-black', '', 5.8, 5.0, 14.8, 3.8, 'ATENDIMENTO', 5.25, 800, '#12171e', 'left', 'Segoe UI'),
-                        text('dd-back-heading-blue', '', 21.5, 5.0, 30.5, 3.8, 'PRESENCIAL E REMOTO', 5.25, 800, '#1a55e2', 'left', 'Segoe UI'),
-                        rect('dd-back-title-line', 5.9, 9.5, 4.9, .42, '#1a55e2', 'line'),
+                        text('dd-back-heading-black', '', 5.9, 4.8, 14.5, 3.6, 'ATENDIMENTO', 5.0, 800, '#13181f', 'left', 'Segoe UI'),
+                        text('dd-back-heading-blue', '', 20.8, 4.8, 29.5, 3.6, 'PRESENCIAL E REMOTO', 5.0, 800, '#1752df', 'left', 'Segoe UI'),
+                        rect('dd-back-title-line', 5.9, 9.2, 5.0, .45, '#1752df', 'line'),
 
-                        icon('dd-back-location-icon', 6.6, 13.8, 5.0, 5.0, 'location-dot', '#1a55e2'),
-                        text('dd-back-address-line1', '', 13.0, 13.8, 29.0, 3.4, 'R. Raimundo Martins, 20', 6.15, 700, '#151a20', 'left', 'Segoe UI'),
-                        text('dd-back-address-line2', '', 13.0, 17.5, 30.0, 3.4, 'Santa Luzia — Manhuaçu/MG', 5.4, 400, '#515964', 'left', 'Segoe UI'),
+                        circle('dd-back-loc-badge', 5.8, 13.1, 5.4, 5.4, '#eef0f4'),
+                        icon('dd-back-location-icon', 7.05, 14.25, 3.0, 3.0, 'location-dot', '#1752df'),
+                        text('dd-back-address-line1', '', 12.9, 13.8, 28.5, 3.0, 'R. Raimundo Martins, 20', 5.85, 700, '#171c23', 'left', 'Segoe UI'),
+                        text('dd-back-address-line2', '', 12.9, 17.45, 29.5, 3.0, 'Santa Luzia — Manhuaçu/MG', 5.2, 400, '#515964', 'left', 'Segoe UI'),
 
-                        icon('dd-back-site-icon', 6.6, 23.7, 5.0, 5.0, 'globe', '#1a55e2'),
-                        text('dd-back-site-main', 'site', 13.0, 23.7, 30.0, 3.4, dv.site, 6.15, 700, '#151a20', 'left', 'Segoe UI'),
-                        text('dd-back-site-caption', '', 13.0, 27.2, 18.5, 2.9, 'Visite nosso site', 4.55, 400, '#515964', 'left', 'Segoe UI'),
+                        circle('dd-back-site-badge', 5.8, 23.2, 5.4, 5.4, '#eef0f4'),
+                        icon('dd-back-site-icon', 6.95, 24.35, 3.1, 3.1, 'globe', '#1752df'),
+                        text('dd-back-site-main', 'site', 12.9, 23.9, 27.0, 3.0, dv.site, 5.85, 700, '#171c23', 'left', 'Segoe UI'),
+                        text('dd-back-site-caption', '', 12.9, 27.25, 18.0, 2.5, 'Visite nosso site', 4.3, 400, '#515964', 'left', 'Segoe UI'),
 
-                        rect('dd-back-col-divider', 50.9, 6.4, .18, 27.6, '#d0d4db', 'line'),
+                        rect('dd-back-col-divider', 49.8, 6.3, .18, 27.2, '#d0d4db', 'line'),
 
                         ddQr,
+                        rect('dd-back-qr-tl-h', 59.3, 6.0, 3.0, .26, '#1752df', 'line'),
+                        rect('dd-back-qr-tl-v', 59.3, 6.0, .26, 3.0, '#1752df', 'line'),
+                        rect('dd-back-qr-tr-h', 76.0, 6.0, 3.0, .26, '#1752df', 'line'),
+                        rect('dd-back-qr-tr-v', 78.74, 6.0, .26, 3.0, '#1752df', 'line'),
+                        rect('dd-back-qr-bl-h', 59.3, 24.45, 3.0, .26, '#1752df', 'line'),
+                        rect('dd-back-qr-bl-v', 59.3, 21.7, .26, 3.0, '#1752df', 'line'),
+                        rect('dd-back-qr-br-h', 76.0, 24.45, 3.0, .26, '#1752df', 'line'),
+                        rect('dd-back-qr-br-v', 78.74, 21.7, .26, 3.0, '#1752df', 'line'),
 
-                        rect('dd-back-qr-tl-h', 59.7, 6.3, 2.8, .28, '#1a55e2', 'line'),
-                        rect('dd-back-qr-tl-v', 59.7, 6.3, .28, 2.8, '#1a55e2', 'line'),
-                        rect('dd-back-qr-tr-h', 76.0, 6.3, 2.8, .28, '#1a55e2', 'line'),
-                        rect('dd-back-qr-tr-v', 78.5, 6.3, .28, 2.8, '#1a55e2', 'line'),
-                        rect('dd-back-qr-bl-h', 59.7, 24.2, 2.8, .28, '#1a55e2', 'line'),
-                        rect('dd-back-qr-bl-v', 59.7, 21.7, .28, 2.8, '#1a55e2', 'line'),
-                        rect('dd-back-qr-br-h', 76.0, 24.2, 2.8, .28, '#1a55e2', 'line'),
-                        rect('dd-back-qr-br-v', 78.5, 21.7, .28, 2.8, '#1a55e2', 'line'),
+                        text('dd-back-qr-title', '', 58.0, 28.4, 23.8, 2.8, 'CONHEÇA NOSSOS SERVIÇOS', 4.65, 800, '#1752df', 'center', 'Segoe UI'),
+                        text('dd-back-qr-caption', '', 58.8, 31.55, 22.0, 2.6, 'Escaneie o código com a câmera', 3.95, 400, '#565d68', 'center', 'Segoe UI'),
 
-                        text('dd-back-qr-title', '', 57.8, 28.4, 23.5, 3.2, 'CONHEÇA NOSSOS SERVIÇOS', 4.8, 800, '#1a55e2', 'center', 'Segoe UI'),
-                        text('dd-back-qr-caption', '', 58.8, 31.7, 22.0, 2.9, 'Escaneie o código com a câmera', 4.15, 400, '#555d68', 'center', 'Segoe UI'),
+                        rect('dd-back-footer-black', 0, 38.0, 49.0, 12.0, '#10161f'),
+                        rect('dd-back-footer-step1', 49.0, 42.2, 8.5, 7.8, '#0f57ea'),
+                        rect('dd-back-footer-step2', 57.5, 43.0, 8.2, 7.0, '#0f57ea'),
+                        rect('dd-back-footer-step3', 65.7, 43.8, 8.0, 6.2, '#0f57ea'),
+                        rect('dd-back-footer-step4', 73.7, 44.6, 8.0, 5.4, '#0f57ea'),
+                        rect('dd-back-footer-step5', 81.7, 45.4, 8.3, 4.6, '#0f57ea'),
 
-                        rect('dd-back-footer-black', 0, 38.0, 90, 12.0, '#121822'),
-                        rect('dd-back-footer-blue-1', 50.0, 44.0, 9.0, 6.0, '#1553d8'),
-                        rect('dd-back-footer-blue-2', 59.0, 43.0, 9.0, 7.0, '#1553d8'),
-                        rect('dd-back-footer-blue-3', 68.0, 42.0, 8.0, 8.0, '#1553d8'),
-                        rect('dd-back-footer-blue-4', 76.0, 41.0, 7.0, 9.0, '#1553d8'),
-                        rect('dd-back-footer-blue-5', 83.0, 40.0, 7.0, 10.0, '#1553d8'),
+                        icon('dd-back-footer-icon', 6.1, 40.6, 4.8, 4.8, 'shield-halved', '#1752df'),
+                        text('dd-back-footer-copy', '', 11.4, 40.5, 28.5, 5.2, 'Informática, redes e suporte\nonde você precisar.', 4.7, 400, '#ffffff', 'left', 'Segoe UI'),
 
-                        icon('dd-back-footer-icon', 6.0, 40.6, 4.9, 4.9, 'shield-halved', '#1e56de'),
-                        text('dd-back-footer-copy', '', 11.5, 40.3, 30.0, 5.6, 'Informática, redes e suporte\nonde você precisar.', 4.9, 400, '#ffffff', 'left', 'Segoe UI'),
-
-                        rect('dd-back-dot-1', 77.6, 45.3, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-2', 79.2, 45.3, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-3', 80.8, 45.3, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-4', 82.4, 45.3, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-5', 84.0, 45.3, .35, .35, '#4f82ff'),
-
-                        rect('dd-back-dot-6', 77.6, 47.0, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-7', 79.2, 47.0, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-8', 80.8, 47.0, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-9', 82.4, 47.0, .35, .35, '#4f82ff'),
-                        rect('dd-back-dot-10', 84.0, 47.0, .35, .35, '#4f82ff')
+                        rect('dd-back-dot-1', 77.5, 45.9, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-2', 79.05, 45.9, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-3', 80.6, 45.9, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-4', 82.15, 45.9, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-5', 83.7, 45.9, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-6', 77.5, 47.3, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-7', 79.05, 47.3, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-8', 80.6, 47.3, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-9', 82.15, 47.3, .34, .34, '#4e7fff'),
+                        rect('dd-back-dot-10', 83.7, 47.3, .34, .34, '#4e7fff')
                     ]
                 }
             };
@@ -743,7 +766,7 @@
             });
             panel.querySelectorAll('.prop-text-row').forEach(function (row) { row.style.display = el.type === 'text' ? '' : 'none'; });
             panel.querySelectorAll('.prop-qr-row').forEach(function (row) { row.style.display = el.type === 'qr' ? '' : 'none'; });
-            panel.querySelectorAll('.prop-shape-row').forEach(function (row) { row.style.display = (el.type === 'line' || el.type === 'rect') ? '' : 'none'; });
+            panel.querySelectorAll('.prop-shape-row').forEach(function (row) { row.style.display = (el.type === 'line' || el.type === 'rect' || el.type === 'circle') ? '' : 'none'; });
             panel.querySelectorAll('.prop-icon-row').forEach(function (row) { row.style.display = el.type === 'icon' ? '' : 'none'; });
             panel.querySelectorAll('.prop-image-row').forEach(function (row) { row.style.display = el.type === 'image' ? '' : 'none'; });
 
@@ -840,6 +863,7 @@
             if (type === 'qr') Object.assign(el, { value: 'https://', w: 20, h: 20 });
             if (type === 'line') Object.assign(el, { color: '#111111', w: 45, h: 0.7 });
             if (type === 'rect') Object.assign(el, { color: '#2563eb', w: 24, h: 10 });
+            if (type === 'circle') Object.assign(el, { color: '#e9edf4', w: 12, h: 12 });
             if (type === 'icon') Object.assign(el, { iconStyle: 'solid', iconName: 'phone', color: '#111111', w: 8, h: 8 });
             if (type === 'image') {
                 this.pendingImageTargetId = null;
@@ -1122,6 +1146,11 @@
             var x = el.x * sx, y = el.y * sy, w = el.w * sx, h = el.h * sy;
             if (el.type === 'line' || el.type === 'rect') {
                 ctx.fillStyle = el.color || '#111111'; ctx.fillRect(x, y, w, h);
+            } else if (el.type === 'circle') {
+                ctx.fillStyle = el.color || '#111111';
+                ctx.beginPath();
+                ctx.ellipse(x + w / 2, y + h / 2, w / 2, h / 2, 0, 0, Math.PI * 2);
+                ctx.fill();
             } else if (el.type === 'text') {
                 var px = (el.fontSize || 8) * 25.4 / 72 * sx;
                 ctx.fillStyle = el.color || '#111111';
@@ -1371,7 +1400,11 @@
         renderDesign: renderDesign,
         drawDesignToCanvas: drawDesignToCanvas
     };
+    // Exposto somente para o exportador PPTX do Canva reutilizar os mesmos SVGs
+    // que aparecem no editor, evitando trocar os ícones na exportação.
+    window.MaposFontAwesomeIcons = FONT_AWESOME_ICONS;
     window.MaposBusinessCardDigital = Digital;
+    window.MaposBusinessCardEditor = Editor;
 
     document.addEventListener('DOMContentLoaded', function () { Editor.init(); });
 })(window, document);
