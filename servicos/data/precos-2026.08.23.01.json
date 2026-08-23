@@ -1,0 +1,32 @@
+{
+    "version": "2026.08.23.01",
+    "updated_at": "2026-08-23T18:27:42-03:00",
+    "settings": {
+        "company_name": "Digital Drift",
+        "whatsapp": "",
+        "header_text": "Serviços de informática com preços claros e atendimento profissional.",
+        "footer_text": "Valores sujeitos à avaliação quando o serviço exigir diagnóstico prévio.",
+        "public_url": "https://mateus1810.github.io/servicos"
+    },
+    "categories": [
+        {
+            "id": 4,
+            "name": "Manutenção",
+            "description": "",
+            "order": 40
+        }
+    ],
+    "services": [
+        {
+            "id": 1,
+            "name": "Kit formatação",
+            "description": "Serviço de formatação do sistema operacional",
+            "price": 130,
+            "price_type": "fixo",
+            "price_label": "R$ 130,00",
+            "category_id": 4,
+            "featured": false,
+            "order": 10
+        }
+    ]
+}
