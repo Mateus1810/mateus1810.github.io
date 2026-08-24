@@ -1,6 +1,6 @@
 {
-    "version": "2026.08.23.09",
-    "updated_at": "2026-08-23T21:14:19-03:00",
+    "version": "2026.08.23.10",
+    "updated_at": "2026-08-23T21:16:09-03:00",
     "settings": {
         "company_name": "Digital Drift",
         "whatsapp": "5533984024108",
@@ -34,8 +34,8 @@
             "name": "Clonagem SSD/HD",
             "description": "Clonagem de HD ou SSD para transferência de todos os dados",
             "price": 100,
-            "price_type": "fixo",
-            "price_label": "R$ 100,00",
+            "price_type": "a_partir",
+            "price_label": "A partir de R$ 100,00",
             "category_id": 1,
             "featured": true,
             "order": 20
