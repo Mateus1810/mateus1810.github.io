@@ -1,0 +1,49 @@
+{
+    "version": "2026.08.23.06",
+    "updated_at": "2026-08-23T21:05:14-03:00",
+    "settings": {
+        "company_name": "Digital Drift",
+        "whatsapp": "",
+        "header_text": "Serviços de informática com preços claros e atendimento profissional.",
+        "footer_text": "Valores sujeitos à avaliação quando o serviço exigir diagnóstico prévio.",
+        "public_url": "https://mateus1810.github.io/servicos"
+    },
+    "categories": [
+        {
+            "id": 1,
+            "name": "Computadores e Sistemas",
+            "description": "",
+            "order": 10
+        },
+        {
+            "id": 4,
+            "name": "Manutenção",
+            "description": "",
+            "order": 40
+        }
+    ],
+    "services": [
+        {
+            "id": 3,
+            "name": "Clonagem SSD/HD",
+            "description": "Clonagem de HD ou SSD para transferência de todos os dados",
+            "price": 100,
+            "price_type": "fixo",
+            "price_label": "R$ 100,00",
+            "category_id": 1,
+            "featured": true,
+            "order": 20
+        },
+        {
+            "id": 1,
+            "name": "Kit formatação",
+            "description": "Formatação do sistema com instalação de programas básicos e drivers essenciais com backup.",
+            "price": 130,
+            "price_type": "fixo",
+            "price_label": "R$ 130,00",
+            "category_id": 4,
+            "featured": true,
+            "order": 10
+        }
+    ]
+}
