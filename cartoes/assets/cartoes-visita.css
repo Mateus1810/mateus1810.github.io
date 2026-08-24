@@ -3425,3 +3425,232 @@ body.dark .cartoes-github-warning{color:#f8b85d!important}
 .cartoes-canva-note{margin:9px 0 0;padding:9px 10px;border-radius:9px;font-size:9.5px;line-height:1.5;color:var(--bc-muted);background:rgba(49,88,232,.06);border:1px solid rgba(49,88,232,.14)}
 .cartoes-canva-note i{margin-right:5px}
 @media(max-width:520px){.cartoes-canva-image-actions{grid-template-columns:1fr}}
+
+/* =========================================================
+   PÁGINA PÚBLICA — VISUAL ACOLHEDOR v1.1
+   Escopo restrito ao cartão público. Não altera editor/PDF.
+========================================================= */
+.business-card-public{
+  --public-warm-bg:#f8f5ef;
+  --public-warm-surface:#fffdf9;
+  --public-warm-soft:#f5efe5;
+  --public-warm-line:#e7e0d5;
+  --public-warm-ink:#28302c;
+  --public-warm-muted:#6f7972;
+  --public-warm-accent:#327367;
+  --public-warm-accent-dark:#285c53;
+  --public-warm-accent-soft:#edf6f2;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(229,198,149,.22),transparent 29rem),
+    radial-gradient(circle at 92% 18%,rgba(74,132,116,.10),transparent 31rem),
+    var(--public-warm-bg);
+  color:var(--public-warm-ink);
+}
+html:has(.business-card-public){background:var(--public-warm-bg,#f8f5ef)}
+
+.public-card-topbar{padding-top:20px}
+.public-card-topbar-inner{
+  border-color:rgba(224,216,204,.92);
+  border-radius:18px;
+  background:rgba(255,253,249,.88);
+  box-shadow:0 10px 34px rgba(70,61,48,.055);
+}
+.public-card-mark{
+  border-color:#e5ddd1;
+  border-radius:12px;
+  background:#f7f2ea;
+  color:var(--public-warm-accent);
+}
+.public-card-identity span{color:#9a9184;letter-spacing:.9px}
+.public-card-identity strong{color:var(--public-warm-ink)}
+.public-icon-button{
+  border-color:#e5ddd1;
+  background:#fffdf9;
+  color:#637068;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,color .18s ease;
+}
+.public-icon-button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(50,115,103,.28);
+  background:var(--public-warm-accent-soft);
+  color:var(--public-warm-accent-dark);
+}
+
+.public-card-hero{padding-top:54px}
+.public-side-switch{
+  border-color:#e4ddd2;
+  background:rgba(255,253,249,.82);
+  box-shadow:0 5px 18px rgba(70,61,48,.035);
+}
+.public-side-switch button{color:#8d897f}
+.public-side-switch button.active{
+  background:#fff;
+  color:var(--public-warm-ink);
+  box-shadow:0 4px 14px rgba(70,61,48,.08);
+}
+.public-side-switch button.active i{color:var(--public-warm-accent)}
+.public-card-glow{background:rgba(82,71,55,.16);opacity:.33}
+.public-card-face .cartoes-digital-card{
+  box-shadow:0 32px 78px rgba(65,56,44,.16),0 0 0 1px rgba(45,39,31,.045);
+}
+.public-card-tip{color:#9a9388}
+.public-card-tip i{color:#8caa9f}
+
+.public-card-actions-panel{
+  padding:31px;
+  border-color:var(--public-warm-line);
+  border-radius:24px;
+  background:rgba(255,253,249,.94);
+  box-shadow:0 22px 60px rgba(70,61,48,.075);
+}
+.public-panel-kicker{
+  width:max-content;
+  padding:6px 9px;
+  border:1px solid rgba(50,115,103,.12);
+  border-radius:999px;
+  background:var(--public-warm-accent-soft);
+  color:var(--public-warm-accent-dark);
+  font-size:7.5px;
+  letter-spacing:.8px;
+}
+.public-card-actions-panel h1{
+  margin-top:12px;
+  color:var(--public-warm-ink);
+  font-weight:720;
+  letter-spacing:-1.2px;
+}
+.public-panel-intro{
+  max-width:430px;
+  margin-top:11px;
+  color:var(--public-warm-muted);
+  font-size:12px;
+  line-height:1.7;
+}
+.public-primary-actions{gap:9px;margin-top:24px}
+.public-primary-actions button{
+  min-height:62px;
+  border-color:#e7e0d6;
+  border-radius:14px;
+  background:#fff;
+}
+.public-primary-actions button:hover{
+  border-color:rgba(50,115,103,.2);
+  box-shadow:0 10px 25px rgba(70,61,48,.07);
+}
+.public-primary-actions button>i{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:#f5f1ea;
+  color:#647168;
+}
+.public-primary-actions button strong{color:#303934;font-size:11.5px}
+.public-primary-actions button small{color:#969085;font-size:9.5px}
+.public-primary-actions .public-action-primary{
+  border-color:#d7e6df;
+  background:#f7fbf9;
+}
+.public-primary-actions .public-action-primary>i{
+  background:#e9f4ef;
+  color:var(--public-warm-accent);
+}
+.public-primary-actions .public-action-whatsapp{
+  border-color:#cce8d6;
+  background:#f5fbf7;
+}
+
+.public-card-price-note{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:12px;
+  margin-top:14px;
+  padding:15px;
+  border:1px solid #eadfcd;
+  border-radius:16px;
+  background:linear-gradient(145deg,#fffaf1,#f8f4ec);
+}
+.public-card-price-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(180,142,86,.16);
+  border-radius:12px;
+  background:#fffdf8;
+  color:#94734a;
+  font-size:17px;
+}
+.public-card-price-copy{min-width:0;padding-top:1px}
+.public-card-price-copy strong{
+  display:block;
+  color:#443a2e;
+  font-size:11.5px;
+  line-height:1.35;
+}
+.public-card-price-copy p{
+  margin:4px 0 0;
+  color:#807466;
+  font-size:9.5px;
+  line-height:1.55;
+}
+.public-card-price-link{
+  grid-column:2;
+  width:max-content;
+  max-width:100%;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:1px;
+  padding:8px 11px;
+  border:1px solid rgba(50,115,103,.18);
+  border-radius:10px;
+  background:#fff;
+  color:var(--public-warm-accent-dark);
+  text-decoration:none;
+  font-size:9.5px;
+  font-weight:800;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.public-card-price-link:hover{
+  transform:translateY(-1px);
+  border-color:rgba(50,115,103,.32);
+  background:var(--public-warm-accent-soft);
+}
+.public-card-price-link i{font-size:10px}
+
+.public-action-divider{color:#a29a8f;margin-top:21px}
+.public-action-divider::after{background:#eee8df}
+.public-secondary-grid button,
+.public-download-row button,
+.public-download-row a{
+  border-color:#e8e1d7;
+  background:#fffdf9;
+  color:#6f746f;
+}
+.public-secondary-grid button:hover,
+.public-download-row button:hover,
+.public-download-row a:hover{
+  border-color:rgba(50,115,103,.22);
+  background:#f7fbf9;
+  color:var(--public-warm-accent-dark);
+}
+.public-card-footer{color:#9d9589;padding-bottom:26px}
+.public-card-footer i{color:#ae8876}
+
+@media(max-width:900px){
+  .public-card-content{gap:32px}
+  .public-card-actions-panel{max-width:650px}
+}
+@media(max-width:560px){
+  .public-card-topbar{padding-top:9px}
+  .public-card-topbar-inner{border-radius:14px}
+  .public-card-hero{padding-top:27px}
+  .public-card-content{gap:25px}
+  .public-card-actions-panel{padding:21px 16px;border-radius:18px}
+  .public-card-actions-panel h1{font-size:27px;line-height:1.08}
+  .public-panel-intro{font-size:11px}
+  .public-card-price-note{grid-template-columns:38px minmax(0,1fr);padding:13px;gap:10px}
+  .public-card-price-icon{width:38px;height:38px;border-radius:11px}
+  .public-card-price-link{grid-column:1/-1;width:100%;justify-content:center;min-height:39px;margin-top:3px}
+  .public-card-footer{font-size:9px;text-align:center}
+}
