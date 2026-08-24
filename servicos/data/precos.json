@@ -1,6 +1,6 @@
 {
-    "version": "2026.08.23.05",
-    "updated_at": "2026-08-23T20:55:43-03:00",
+    "version": "2026.08.23.06",
+    "updated_at": "2026-08-23T21:05:14-03:00",
     "settings": {
         "company_name": "Digital Drift",
         "whatsapp": "",
@@ -37,7 +37,7 @@
         {
             "id": 1,
             "name": "Kit formatação",
-            "description": "Formatação do sistema com instalação de programas básicos e drivers essenciais",
+            "description": "Formatação do sistema com instalação de programas básicos e drivers essenciais com backup.",
             "price": 130,
             "price_type": "fixo",
             "price_label": "R$ 130,00",
