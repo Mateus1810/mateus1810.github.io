@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f7f9fc">
-  <meta name="description" content="Digital Drift — manutenção de computadores e notebooks, redes, Wi‑Fi, impressoras, instalação e suporte técnico.">
+  <meta name="description" content="Digital Drift — assistência técnica para computadores e notebooks, instalação e manutenção de redes e Wi‑Fi, impressoras e suporte técnico com atendimento claro e próximo.">
   <meta name="color-scheme" content="light">
   <meta property="og:title" content="Digital Drift — Soluções em Informática">
-  <meta property="og:description" content="Suporte técnico claro, organizado e sem complicação para computadores, redes, Wi‑Fi e impressoras.">
+  <meta property="og:description" content="Seu computador precisa de atenção ou sua rede e Wi‑Fi precisam funcionar melhor? Conheça os serviços da Digital Drift e consulte os preços.">
   <meta property="og:type" content="website">
   <title>Digital Drift — Soluções em Informática</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='15' fill='%230a0d12'/><path d='M15 18h26c7 0 11 4 11 10 0 7-5 11-12 11H28l-7 8H12l17-20h11c2 0 3-1 3-3s-1-3-4-3H15z' fill='%236dd6ff'/></svg>">
@@ -477,6 +477,124 @@
       .mobile-dock .dock-wa{background:#edfdf5;color:#087a4f}
       .mobile-dock .dock-os{background:linear-gradient(135deg,#1677e8,#43a3ff);color:#fff}
     }
+
+
+    /* =========================================================
+       WARM / FRIENDLY OVERRIDES — Digital Drift
+       ========================================================= */
+    :root{
+      --bg:#f7f5f1;
+      --bg-2:#f1eee8;
+      --surface:#fffefa;
+      --surface-2:#faf8f3;
+      --surface-3:#f2efe8;
+      --text:#202b2a;
+      --muted:#61706d;
+      --muted-2:#7e8a86;
+      --line:rgba(39,55,53,.10);
+      --line-strong:rgba(39,55,53,.16);
+      --accent:#2f726d;
+      --accent-2:#4e7f78;
+      --accent-soft:rgba(47,114,109,.09);
+      --good:#27845d;
+      --warm:#b56f3d;
+      --warm-soft:#fff3e7;
+      --shadow:0 20px 55px rgba(44,57,53,.085);
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 12% -8%, rgba(181,111,61,.08), transparent 31rem),
+        radial-gradient(circle at 92% 7%, rgba(47,114,109,.07), transparent 29rem),
+        var(--bg);
+    }
+    .header{background:rgba(255,254,250,.88)}
+    .header.scrolled{background:rgba(255,254,250,.96);box-shadow:0 8px 28px rgba(44,57,53,.055)}
+    .brand-mark{background:#fffefa}
+    .nav>a{color:#55635f}
+    .nav>a:hover{color:#253431}
+    .nav .nav-price{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:800}
+    .nav .nav-price:hover{color:#245c58}
+    .nav .portal-btn{background:#fffefa;color:#2d3b39}
+
+    .hero{padding-top:78px;background:linear-gradient(180deg,rgba(255,254,250,.25),rgba(255,254,250,0))}
+    .hero::before{opacity:.58}
+    .hero h1{max-width:880px;font-size:clamp(48px,6vw,82px);line-height:.98;letter-spacing:-4.2px}
+    .hero h1 span{background:linear-gradient(100deg,#2f726d,#4e8379 58%,#a4643d);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-lead{max-width:730px;color:#5c6966;font-size:17px}
+    .hero-welcome{display:flex;align-items:flex-start;gap:10px;width:fit-content;max-width:670px;margin-top:18px;padding:11px 14px;border:1px solid rgba(181,111,61,.15);border-radius:13px;background:var(--warm-soft);color:#70543f;font-size:12px;line-height:1.55}
+    .hero-welcome i{margin-top:1px;color:#b56f3d;font-size:17px}
+    .hero-actions{margin-top:26px}
+    .btn-primary{background:#2f726d;color:#fff;box-shadow:0 12px 26px rgba(47,114,109,.17)}
+    .btn-primary:hover{background:#286560}
+    .btn-price{border:1px solid rgba(181,111,61,.23);background:#fff3e7;color:#8a512e;box-shadow:0 7px 19px rgba(125,79,46,.07)}
+    .btn-price:hover{background:#fbe9d8;border-color:rgba(181,111,61,.36);color:#754122}
+    .btn-secondary{background:#fffefa}
+    .hero-proof{gap:12px 22px}
+    .proof-item{color:#687570}
+    .proof-item i{color:#2f726d}
+
+    .status-card{background:linear-gradient(160deg,#fffefa,#faf7f1);border-color:rgba(47,114,109,.13);box-shadow:0 24px 58px rgba(44,57,53,.095)}
+    .status-card::before{background:linear-gradient(90deg,#2f726d,#b56f3d)}
+    .online{background:#edf8f3;color:#23724f;border-color:rgba(39,132,93,.16)}
+    .status-icon{background:#f3f6f2;color:#355d58}
+    .status-row p{color:#71807b}
+
+    .strip{background:rgba(255,254,250,.55)}
+    .quick-card,.service-card,.step-card,.workflow-card,.prep-card,details{background:#fffefa;border-color:rgba(39,55,53,.09)}
+    .quick-card,.service-card{box-shadow:0 9px 25px rgba(44,57,53,.035)}
+    .quick-card:hover,.service-card:hover{background:#fffefa;border-color:rgba(47,114,109,.20);box-shadow:0 15px 32px rgba(44,57,53,.065)}
+    .quick-icon,.step-icon,.onsite-note-icon,.prep-card-icon{background:rgba(47,114,109,.09);color:#2f726d}
+    .quick-note{background:#fbf8f2;border-color:rgba(39,55,53,.12)}
+    .service-card.featured{background:linear-gradient(150deg,rgba(47,114,109,.055),rgba(181,111,61,.028) 46%,#fffefa 80%)}
+    .service-icon{background:#f4f5f0;color:#385f59}
+    .featured .service-visual{background:#f8f6f0}
+
+    .price-invite{padding:0 0 88px}
+    .price-invite-card{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:18px;align-items:center;padding:24px 26px;border:1px solid rgba(181,111,61,.16);border-radius:20px;background:linear-gradient(135deg,#fff7ee,#fffefa 60%);box-shadow:0 14px 38px rgba(93,69,50,.055)}
+    .price-invite-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:#f8e8d8;color:#9b5d35;font-size:24px}
+    .price-invite-copy span{display:block;color:#8a6d58;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.75px}
+    .price-invite-copy strong{display:block;margin-top:3px;color:#2b3431;font-size:18px;letter-spacing:-.25px}
+    .price-invite-copy p{margin:5px 0 0;max-width:720px;color:#6c7773;font-size:11.5px;line-height:1.55}
+
+    .journey{background:rgba(255,254,250,.42)}
+    .onsite-note{border-color:rgba(47,114,109,.14);background:linear-gradient(135deg,#f2f8f5,#fffefa)}
+    .onsite-note-copy strong{color:#28423e}
+    .onsite-note-copy p{color:#687772}
+    .onsite-note-detail{background:#fffefa;color:#697570}
+
+    .portal-wrap{border-color:rgba(47,114,109,.14);background:linear-gradient(145deg,rgba(47,114,109,.055),rgba(181,111,61,.024) 52%,#fffefa)}
+    .portal-panel{background:#fffefa}
+    .prep-card-head{background:linear-gradient(180deg,#fdfbf7,#fffefa)}
+    .prep-badge{background:#f1f7f4;color:#43716a;border-color:rgba(47,114,109,.12)}
+    .route{background:#f6f3ed!important}
+
+    .final-box{background:linear-gradient(135deg,#fff8ef,#f2f8f5);border-color:rgba(47,114,109,.13);box-shadow:0 18px 48px rgba(44,57,53,.07)}
+    .final-box::before{background:radial-gradient(circle,rgba(181,111,61,.12),transparent 68%)}
+    .final-copy{position:relative;margin:10px 0 0;max-width:650px;color:#66736f;font-size:13px;line-height:1.6}
+    footer{background:rgba(255,254,250,.46)}
+
+    @media (max-width:760px){
+      .hero{padding-top:50px}
+      .hero h1{font-size:clamp(41px,12.6vw,61px);letter-spacing:-2.7px}
+      .hero-actions{grid-template-columns:1fr 1fr}
+      .hero-actions .btn:first-child{grid-column:1/-1}
+      .hero-welcome{font-size:11.5px}
+      .price-invite{padding-bottom:68px}
+      .price-invite-card{grid-template-columns:46px minmax(0,1fr);padding:20px 17px;gap:13px}
+      .price-invite-icon{width:46px;height:46px;border-radius:13px;font-size:21px}
+      .price-invite-card .btn{grid-column:1/-1;width:100%;margin-top:2px}
+      .mobile-dock{background:rgba(255,254,250,.96);border-color:rgba(39,55,53,.13);box-shadow:0 12px 34px rgba(44,57,53,.15)}
+      .mobile-dock .dock-wa{background:#eaf7f0;color:#1f7551}
+      .mobile-dock .dock-price{background:#fff0e2;color:#85502e}
+    }
+    @media (max-width:440px){
+      .hero-actions{grid-template-columns:1fr}
+      .hero-actions .btn:first-child{grid-column:auto}
+      .price-invite-card{grid-template-columns:1fr}
+      .price-invite-icon{margin-bottom:2px}
+    }
+
 </style>
 </head>
 <body>
@@ -492,6 +610,7 @@
       <nav class="nav" aria-label="Navegação principal">
         <a href="#atalhos">Contato rápido</a>
         <a href="#servicos">Serviços</a>
+        <a class="nav-price" href="https://mateus1810.github.io/servicos" target="_blank" rel="noopener noreferrer"><i class="ri-price-tag-3-line" aria-hidden="true"></i> Preços</a>
         <a href="#atendimento">Atendimento</a>
         <a href="#orientacoes">Orientações</a>
         <a href="#duvidas">Dúvidas</a>
@@ -505,6 +624,7 @@
       <div class="container mobile-menu-inner">
         <a href="#atalhos"><i class="ri-message-3-line"></i> Contato rápido</a>
         <a href="#servicos"><i class="ri-layout-grid-line"></i> Serviços</a>
+        <a href="https://mateus1810.github.io/servicos" target="_blank" rel="noopener noreferrer"><i class="ri-price-tag-3-line"></i> Ver preços</a>
         <a href="#atendimento"><i class="ri-route-line"></i> Atendimento</a>
         <a href="#portal"><i class="ri-user-settings-line"></i> Portal do cliente</a>
         <a href="#orientacoes"><i class="ri-information-line"></i> Orientações</a>
@@ -518,31 +638,32 @@
     <section class="hero" id="inicio">
       <div class="container hero-grid">
         <div class="reveal">
-          <span class="kicker">Assistência técnica · redes · suporte</span>
-          <h1>Informática bem resolvida, <span>sem complicação.</span></h1>
-          <p class="hero-lead">Manutenção de computadores e notebooks, redes, Wi‑Fi, impressoras, instalação e configuração. Você conta o problema; a Digital Drift organiza o atendimento e orienta o próximo passo com clareza.</p>
+          <span class="kicker">Assistência técnica para o seu dia a dia</span>
+          <h1>Seu computador e sua internet <span>funcionando como devem.</span></h1>
+          <p class="hero-lead">PC lento, notebook com problema, Wi‑Fi que não chega direito ou uma rede nova para instalar? Você explica do seu jeito e a Digital Drift cuida do próximo passo com atendimento claro, organizado e sem complicação.</p>
+          <div class="hero-welcome"><i class="ri-heart-3-line" aria-hidden="true"></i><span>Não precisa saber o nome do defeito. Conte o que está acontecendo e a gente começa por aí.</span></div>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://graceless-consumer-unneeded.ngrok-free.dev/mapos/index.php/mine"><i class="ri-file-add-line" aria-hidden="true"></i> Abrir Ordem de Serviço</a>
-            <a class="btn btn-secondary" href="#servicos"><i class="ri-layout-grid-line" aria-hidden="true"></i> Ver serviços</a>
-            <a class="btn btn-whatsapp" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line" aria-hidden="true"></i> WhatsApp</a>
+            <a class="btn btn-primary" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Digital%20Drift.%20Quero%20contar%20o%20que%20preciso%20e%20saber%20qual%20%C3%A9%20o%20melhor%20atendimento%20para%20o%20meu%20caso." target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line" aria-hidden="true"></i> Quero atendimento</a>
+            <a class="btn btn-price" href="https://mateus1810.github.io/servicos" target="_blank" rel="noopener noreferrer"><i class="ri-price-tag-3-line" aria-hidden="true"></i> Ver preços</a>
+            <a class="btn btn-secondary" href="https://graceless-consumer-unneeded.ngrok-free.dev/mapos/index.php/mine"><i class="ri-file-add-line" aria-hidden="true"></i> Abrir OS</a>
           </div>
 
           <div class="hero-proof" aria-label="Destaques do atendimento">
-            <span class="proof-item"><i class="ri-check-line"></i> Atendimento organizado</span>
-            <span class="proof-item"><i class="ri-check-line"></i> OS pelo portal</span>
-            <span class="proof-item"><i class="ri-check-line"></i> Orientação sem “tecnês”</span>
+            <span class="proof-item"><i class="ri-check-line"></i> Você explica do seu jeito</span>
+            <span class="proof-item"><i class="ri-check-line"></i> Atendimento no local quando necessário</span>
+            <span class="proof-item"><i class="ri-check-line"></i> Preços disponíveis para consulta</span>
           </div>
         </div>
 
         <aside class="status-card reveal" aria-label="Resumo dos serviços">
           <div class="status-top">
-            <div><small>Digital Drift / suporte</small><strong>Principais áreas</strong></div>
+            <div><small>Digital Drift / atendimento</small><strong>Como podemos ajudar?</strong></div>
             <span class="online">Disponível</span>
           </div>
           <div class="status-list">
-            <div class="status-row"><span class="status-icon"><i class="ri-computer-line"></i></span><div><strong>PCs e notebooks</strong><p>Diagnóstico, manutenção, Windows e upgrades.</p></div><span class="status-tag">Equipamentos</span></div>
-            <div class="status-row"><span class="status-icon"><i class="ri-router-line"></i></span><div><strong>Redes e Wi‑Fi</strong><p>Instalação, configuração e conectividade.</p></div><span class="status-tag">Infraestrutura</span></div>
+            <div class="status-row"><span class="status-icon"><i class="ri-computer-line"></i></span><div><strong>Seu PC precisa de cuidado?</strong><p>Lentidão, falhas, manutenção, Windows, limpeza e upgrades.</p></div><span class="status-tag">Equipamentos</span></div>
+            <div class="status-row"><span class="status-icon"><i class="ri-router-line"></i></span><div><strong>Internet e Wi‑Fi no ambiente</strong><p>Instalação e organização de rede, roteadores, cabos e cobertura Wi‑Fi.</p></div><span class="status-tag">No local</span></div>
             <div class="status-row"><span class="status-icon"><i class="ri-printer-line"></i></span><div><strong>Impressoras</strong><p>Drivers, rede, instalação e compartilhamento.</p></div><span class="status-tag">Periféricos</span></div>
             <div class="status-row"><span class="status-icon"><i class="ri-settings-3-line"></i></span><div><strong>Configuração e suporte</strong><p>Sistemas, programas, periféricos e estações.</p></div><span class="status-tag">Suporte</span></div>
           </div>
@@ -560,7 +681,7 @@
       <div class="container">
         <div class="section-heading reveal">
           <div class="section-code">01 / CONTATO RÁPIDO</div>
-          <div><h2>Comece pelo problema que você está vendo.</h2><p>Escolha o assunto mais próximo do seu caso. O WhatsApp já abre com uma mensagem inicial e você só complementa os detalhes.</p></div>
+          <div><h2>O que você precisa resolver hoje?</h2><p>Escolha a situação mais parecida com a sua. A conversa já começa encaminhada e você só conta os detalhes do que está acontecendo.</p></div>
         </div>
 
         <div class="quick-grid reveal">
@@ -571,7 +692,7 @@
           <a class="quick-card" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift.%20Gostaria%20de%20conversar%20sobre%20a%20instala%C3%A7%C3%A3o%20ou%20configura%C3%A7%C3%A3o%20de%20uma%20rede%2C%20por%20favor." target="_blank" rel="noopener noreferrer"><span class="quick-icon"><i class="ri-node-tree"></i></span><span><strong>Instalar ou organizar uma rede</strong><small>Roteadores, switches e pontos de rede</small></span><span class="quick-arrow"><i class="ri-arrow-right-up-line"></i></span></a>
           <a class="quick-card" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer"><span class="quick-icon"><i class="ri-question-line"></i></span><span><strong>Outro problema</strong><small>Explique com suas próprias palavras</small></span><span class="quick-arrow"><i class="ri-arrow-right-up-line"></i></span></a>
         </div>
-        <div class="quick-note reveal"><span>Não encontrou exatamente o seu caso? Sem problema — descreva o que está acontecendo do jeito que você percebe.</span><a href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer">Falar com a Digital Drift <i class="ri-arrow-right-up-line"></i></a></div>
+        <div class="quick-note reveal"><span>Seu caso é diferente? Sem problema. Pode explicar com suas palavras — a gente ajuda a entender por onde começar.</span><a href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer">Falar com a Digital Drift <i class="ri-arrow-right-up-line"></i></a></div>
       </div>
     </section>
 
@@ -579,14 +700,14 @@
       <div class="container">
         <div class="section-heading reveal">
           <div class="section-code">02 / SERVIÇOS</div>
-          <div><h2>Do equipamento à infraestrutura.</h2><p>O atendimento cobre as principais necessidades de informática para equipamentos, conectividade, impressão e configuração.</p></div>
+          <div><h2>Cuidado para o computador. Estrutura para a sua internet.</h2><p>Seja para recuperar um equipamento que está dando dor de cabeça ou para deixar a rede da casa ou do trabalho funcionando melhor, você encontra o atendimento certo aqui.</p></div>
         </div>
 
         <div class="services-grid reveal">
           <article class="service-card featured">
             <div class="service-head"><span class="service-icon"><i class="ri-computer-line"></i></span><span class="service-num">01</span></div>
             <h3>Computadores e notebooks</h3>
-            <p>Diagnóstico de falhas, lentidão, problemas de inicialização, manutenção, sistema operacional, limpeza, troca de componentes e melhorias de desempenho.</p>
+            <p>Seu computador está lento, não liga, reinicia ou simplesmente não está legal de usar? Fazemos diagnóstico, manutenção, Windows, limpeza e upgrades para colocar o equipamento em ordem.</p>
             <div class="service-visual" aria-hidden="true">
               <div class="diag-line"><span class="diag-dot good"></span><span>Sistema e inicialização</span><span>CHECK</span></div>
               <div class="diag-line"><span class="diag-dot blue"></span><span>SSD, RAM e desempenho</span><span>TESTE</span></div>
@@ -595,10 +716,24 @@
             <div class="service-tags"><span>Windows</span><span>SSD</span><span>Memória</span><span>Diagnóstico</span></div>
           </article>
 
-          <article class="service-card"><div class="service-head"><span class="service-icon"><i class="ri-router-line"></i></span><span class="service-num">02</span></div><h3>Redes e Wi‑Fi</h3><p>Instalação, configuração e manutenção de redes, roteadores, switches e pontos de rede, além de melhorias na cobertura e estabilidade do Wi‑Fi.</p><div class="service-tags"><span>Wi‑Fi</span><span>Roteadores</span><span>Switches</span><span>Pontos de rede</span></div></article>
+          <article class="service-card"><div class="service-head"><span class="service-icon"><i class="ri-router-line"></i></span><span class="service-num">02</span></div><h3>Redes e Wi‑Fi</h3><p>Vai instalar internet, organizar a rede ou está cansado de Wi‑Fi fraco e quedas? Cuidamos de roteadores, switches, cabeamento, pontos de rede e cobertura do sinal.</p><div class="service-tags"><span>Wi‑Fi</span><span>Roteadores</span><span>Switches</span><span>Pontos de rede</span></div></article>
           <article class="service-card"><div class="service-head"><span class="service-icon"><i class="ri-printer-line"></i></span><span class="service-num">03</span></div><h3>Impressoras</h3><p>Instalação, drivers, configuração em rede, compartilhamento e resolução de falhas de comunicação.</p><div class="service-tags"><span>Drivers</span><span>Rede</span><span>Compartilhamento</span></div></article>
           <article class="service-card"><div class="service-head"><span class="service-icon"><i class="ri-settings-3-line"></i></span><span class="service-num">04</span></div><h3>Instalação e configuração</h3><p>Programas, periféricos, sistemas, estações de trabalho e ajustes para deixar o ambiente funcionando corretamente.</p><div class="service-tags"><span>Software</span><span>Periféricos</span><span>Configuração</span></div></article>
           <article class="service-card"><div class="service-head"><span class="service-icon"><i class="ri-tools-line"></i></span><span class="service-num">05</span></div><h3>Suporte técnico</h3><p>Ajuda para identificar o problema, orientar o atendimento e definir o próximo passo sem exigir conhecimento técnico do cliente.</p><div class="service-tags"><span>Orientação</span><span>Suporte</span><span>Atendimento</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="price-invite" aria-label="Consultar preços">
+      <div class="container">
+        <div class="price-invite-card reveal">
+          <div class="price-invite-icon" aria-hidden="true"><i class="ri-price-tag-3-line"></i></div>
+          <div class="price-invite-copy">
+            <span>Quer ter uma ideia do valor antes de chamar?</span>
+            <strong>Consulte a tabela de preços com calma.</strong>
+            <p>Os serviços publicados ficam disponíveis online. Alguns atendimentos podem variar conforme o equipamento, o local ou o que precisar ser feito.</p>
+          </div>
+          <a class="btn btn-price" href="https://mateus1810.github.io/servicos" target="_blank" rel="noopener noreferrer"><i class="ri-arrow-right-up-line"></i> Abrir tabela de preços</a>
         </div>
       </div>
     </section>
@@ -607,7 +742,7 @@
       <div class="container">
         <div class="section-heading reveal">
           <div class="section-code">03 / ATENDIMENTO</div>
-          <div><h2>Um caminho simples do primeiro contato à solução.</h2><p>Você pode começar pelo WhatsApp ou abrir a Ordem de Serviço diretamente. O objetivo é registrar o problema com clareza e organizar o acompanhamento.</p></div>
+          <div><h2>Você conta o que precisa. A gente organiza o resto.</h2><p>Pode começar pelo WhatsApp, consultar os preços ou abrir a Ordem de Serviço. O atendimento é pensado para ser simples desde o primeiro contato.</p></div>
         </div>
 
         <div class="steps-row reveal">
@@ -624,8 +759,8 @@
         <div class="onsite-note reveal" aria-label="Atendimento no local">
           <span class="onsite-note-icon" aria-hidden="true"><i class="ri-map-pin-2-line"></i></span>
           <div class="onsite-note-copy">
-            <strong>Atendimento no local, quando fizer sentido</strong>
-            <p>Também realizamos atendimento no endereço do cliente para desktops, alguns serviços em notebooks, redes, Wi‑Fi, impressoras e outras situações que possam ser resolvidas no próprio local, mediante agendamento.</p>
+            <strong>Tem coisa que é melhor resolver aí mesmo.</strong>
+            <p>Para redes, Wi‑Fi, impressoras, desktops e outros serviços que dependem do ambiente, podemos atender no local mediante agendamento. Se você quer instalar, organizar ou melhorar a rede da casa ou do trabalho, esse atendimento é feito pensando no espaço como um todo.</p>
           </div>
           <div class="onsite-note-detail"><i class="ri-information-line" aria-hidden="true"></i><span>Se houver taxa de visita ou deslocamento, o valor é informado antes da confirmação do atendimento.</span></div>
         </div>
@@ -725,8 +860,8 @@
     <section class="final-cta">
       <div class="container">
         <div class="final-box reveal">
-          <div><small>Digital Drift / Inovação e Precisão Técnica</small><h2>Precisando de ajuda? Comece pelo caminho mais simples.</h2></div>
-          <div class="final-actions"><a class="btn btn-primary" href="https://graceless-consumer-unneeded.ngrok-free.dev/mapos/index.php/mine"><i class="ri-file-add-line"></i> Abrir OS</a><a class="btn btn-whatsapp" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> WhatsApp</a></div>
+          <div><small>Digital Drift / suporte próximo e organizado</small><h2>Tem um computador para arrumar ou uma rede para colocar em ordem?</h2><p class="final-copy">Veja os preços para ter uma referência ou fale com a gente e conte o que você precisa.</p></div>
+          <div class="final-actions"><a class="btn btn-price" href="https://mateus1810.github.io/servicos" target="_blank" rel="noopener noreferrer"><i class="ri-price-tag-3-line"></i> Ver preços</a><a class="btn btn-primary" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Digital%20Drift.%20Quero%20contar%20o%20que%20preciso%20e%20saber%20qual%20%C3%A9%20o%20melhor%20atendimento%20para%20o%20meu%20caso." target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> Quero falar sobre meu caso</a></div>
         </div>
       </div>
     </section>
@@ -740,7 +875,7 @@
   </footer>
 
   <a class="whatsapp-float" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Digital Drift pelo WhatsApp"><i class="ri-whatsapp-line"></i></a>
-  <nav class="mobile-dock" aria-label="Ações rápidas"><a class="dock-wa" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Vim%20pelo%20site%20da%20Digital%20Drift%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.%20Poderiam%20me%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> WhatsApp</a><a class="dock-os" href="https://graceless-consumer-unneeded.ngrok-free.dev/mapos/index.php/mine"><i class="ri-file-add-line"></i> Abrir OS</a></nav>
+  <nav class="mobile-dock" aria-label="Ações rápidas"><a class="dock-wa" href="https://wa.me/5533984024108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Digital%20Drift.%20Quero%20contar%20o%20que%20preciso%20e%20saber%20qual%20%C3%A9%20o%20melhor%20atendimento%20para%20o%20meu%20caso." target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> Falar agora</a><a class="dock-price" href="https://mateus1810.github.io/servicos" target="_blank" rel="noopener noreferrer"><i class="ri-price-tag-3-line"></i> Ver preços</a></nav>
 
   <script>
     const header = document.getElementById('header');
