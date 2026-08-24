@@ -1,0 +1,282 @@
+{
+    "version": "2026.08.23.12",
+    "updated_at": "2026-08-23T22:23:30-03:00",
+    "settings": {
+        "company_name": "Digital Drift",
+        "whatsapp": "5533984024108",
+        "header_text": "Serviços de informática com preços claros e atendimento profissional.",
+        "footer_text": "Valores sujeitos à avaliação quando o serviço exigir diagnóstico prévio.",
+        "public_url": "https://mateus1810.github.io/servicos"
+    },
+    "categories": [
+        {
+            "id": 1,
+            "name": "Computadores e Sistemas",
+            "description": "Serviços de instalação, configuração, manutenção e otimização de computadores e sistemas operacionais.",
+            "order": 10
+        },
+        {
+            "id": 2,
+            "name": "Hardware",
+            "description": "Serviços de instalação, substituição e configuração de componentes e peças do computador.",
+            "order": 20
+        },
+        {
+            "id": 4,
+            "name": "Manutenção",
+            "description": "Serviços de limpeza, manutenção preventiva e correção de problemas em computadores.",
+            "order": 40
+        },
+        {
+            "id": 5,
+            "name": "Diagnóstico",
+            "description": "Identificação de falhas e testes para verificar o funcionamento do computador e seus componentes.",
+            "order": 50
+        },
+        {
+            "id": 7,
+            "name": "Atendimento",
+            "description": "Serviços de suporte técnico e atendimento presencial para computadores e equipamentos.",
+            "order": 70
+        },
+        {
+            "id": 8,
+            "name": "Redes e Internet",
+            "description": "Serviços de configuração, conexão e manutenção de redes, Wi-Fi e acesso à internet.",
+            "order": 80
+        }
+    ],
+    "services": [
+        {
+            "id": 1,
+            "name": "Kit formatação",
+            "description": "Formatação do sistema com instalação de programas básicos e drivers essenciais com backup.",
+            "price": 130,
+            "price_type": "fixo",
+            "price_label": "R$ 130,00",
+            "category_id": 1,
+            "featured": true,
+            "order": 10
+        },
+        {
+            "id": 6,
+            "name": "Rem. vírus",
+            "description": "Remoção de Vírus do distema.",
+            "price": 120,
+            "price_type": "fixo",
+            "price_label": "R$ 120,00",
+            "category_id": 1,
+            "featured": false,
+            "order": 30
+        },
+        {
+            "id": 7,
+            "name": "Instalacao de drivers",
+            "description": "Instalação e configuração dos drivers necessários para o correto funcionamento do computador e de seus componentes.",
+            "price": 30,
+            "price_type": "fixo",
+            "price_label": "R$ 30,00",
+            "category_id": 1,
+            "featured": false,
+            "order": 40
+        },
+        {
+            "id": 8,
+            "name": "Atualizacao BIOS/UEFI",
+            "description": "Atualização da BIOS ou UEFI da placa-mãe",
+            "price": 60,
+            "price_type": "fixo",
+            "price_label": "R$ 60,00",
+            "category_id": 1,
+            "featured": false,
+            "order": 50
+        },
+        {
+            "id": 9,
+            "name": "Inst. Windows",
+            "description": "Instalação do sistema operacional Windows no computador.",
+            "price": 80,
+            "price_type": "fixo",
+            "price_label": "R$ 80,00",
+            "category_id": 1,
+            "featured": false,
+            "order": 60
+        },
+        {
+            "id": 10,
+            "name": "Otimização do sistema.",
+            "description": "Procedimento de otimização do sistema operacional para a melhoria.",
+            "price": 100,
+            "price_type": "fixo",
+            "price_label": "R$ 100,00",
+            "category_id": 1,
+            "featured": false,
+            "order": 70
+        },
+        {
+            "id": 3,
+            "name": "Clonagem SSD/HD",
+            "description": "Clonagem de HD ou SSD para transferência de todos os dados para outro dispositivo de armazenamento.",
+            "price": 100,
+            "price_type": "a_partir",
+            "price_label": "A partir de R$ 100,00",
+            "category_id": 2,
+            "featured": true,
+            "order": 20
+        },
+        {
+            "id": 11,
+            "name": "Instalação de SSD/HD + Sistema",
+            "description": "Instalação física de SSD ou HD no equipamento com a instalação do sistema operacional.",
+            "price": 150,
+            "price_type": "fixo",
+            "price_label": "R$ 150,00",
+            "category_id": 2,
+            "featured": false,
+            "order": 30
+        },
+        {
+            "id": 12,
+            "name": "Troca de peça simples",
+            "description": "Substituição de peças e componentes simples de hardware no equipamento.",
+            "price": 60,
+            "price_type": "fixo",
+            "price_label": "R$ 60,00",
+            "category_id": 2,
+            "featured": false,
+            "order": 40
+        },
+        {
+            "id": 13,
+            "name": "Troca Bateria Notebook",
+            "description": "Substituição da bateria do notebook.",
+            "price": 150,
+            "price_type": "a_partir",
+            "price_label": "A partir de R$ 150,00",
+            "category_id": 2,
+            "featured": false,
+            "order": 50
+        },
+        {
+            "id": 14,
+            "name": "Troca Tela Notebook",
+            "description": "Substituição da tela do notebook.",
+            "price": 170,
+            "price_type": "a_partir",
+            "price_label": "A partir de R$ 170,00",
+            "category_id": 2,
+            "featured": false,
+            "order": 60
+        },
+        {
+            "id": 15,
+            "name": "Troca de fan/cooler",
+            "description": "Substituição do cooler ou fan do computador para restabelecer o desempenho.",
+            "price": 70,
+            "price_type": "fixo",
+            "price_label": "R$ 70,00",
+            "category_id": 2,
+            "featured": false,
+            "order": 70
+        },
+        {
+            "id": 4,
+            "name": "Limpeza Preventiva",
+            "description": "Limpeza interna do equipamento para remoção de poeira e sujeira, ajudando a melhorar a ventilação e prevenir superaquecimento.",
+            "price": 130,
+            "price_type": "fixo",
+            "price_label": "R$ 130,00",
+            "category_id": 4,
+            "featured": true,
+            "order": 20
+        },
+        {
+            "id": 16,
+            "name": "Limpeza básica",
+            "description": "Remoção de poeira e limpeza da parte externa.",
+            "price": 80,
+            "price_type": "fixo",
+            "price_label": "R$ 80,00",
+            "category_id": 4,
+            "featured": false,
+            "order": 30
+        },
+        {
+            "id": 17,
+            "name": "Limpeza Completa",
+            "description": "Higienização e limpeza completa do computador.",
+            "price": 200,
+            "price_type": "a_partir",
+            "price_label": "A partir de R$ 200,00",
+            "category_id": 4,
+            "featured": false,
+            "order": 40
+        },
+        {
+            "id": 18,
+            "name": "Limpeza + pasta termica",
+            "description": "Realização de limpeza básica e substituição da pasta térmica.",
+            "price": 95,
+            "price_type": "fixo",
+            "price_label": "R$ 95,00",
+            "category_id": 4,
+            "featured": false,
+            "order": 50
+        },
+        {
+            "id": 19,
+            "name": "Diagnóstico básico",
+            "description": "Realização de teste básico de hardware para verificação dos componentes",
+            "price": 50,
+            "price_type": "fixo",
+            "price_label": "R$ 50,00",
+            "category_id": 5,
+            "featured": false,
+            "order": 10
+        },
+        {
+            "id": 20,
+            "name": "Diagnóstico avançado",
+            "description": "Realização de teste completo de hardware para análise e identificação de problemas.",
+            "price": 110,
+            "price_type": "fixo",
+            "price_label": "R$ 110,00",
+            "category_id": 5,
+            "featured": false,
+            "order": 20
+        },
+        {
+            "id": 22,
+            "name": "Visita Técnica",
+            "description": "Atendimento técnico no local para avaliação e solução de problemas em computadores, redes e equipamentos.",
+            "price": 50,
+            "price_type": "fixo",
+            "price_label": "R$ 50,00",
+            "category_id": 7,
+            "featured": false,
+            "order": 10
+        },
+        {
+            "id": 5,
+            "name": "Configuração de roteador",
+            "description": "Configuração e ajuste de roteadores, incluindo conexão com a internet, Wi-Fi, alteração de nome e senha da rede e configurações básicas.",
+            "price": 90,
+            "price_type": "fixo",
+            "price_label": "R$ 90,00",
+            "category_id": 8,
+            "featured": true,
+            "order": 10
+        },
+        {
+            "id": 21,
+            "name": "Configuração de rede doméstica",
+            "description": "Configuração e organização da rede doméstica, incluindo conexão de dispositivos, Wi-Fi e ajustes básicos de rede.",
+            "price": 120,
+            "price_type": "a_partir",
+            "price_label": "A partir de R$ 120,00",
+            "category_id": 8,
+            "featured": false,
+            "order": 20
+        }
+    ]
+}
