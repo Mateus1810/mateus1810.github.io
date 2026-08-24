@@ -1,4 +1,4 @@
-/* MAPOS-CATALOGO-PUBLICO v1.0.9 - tema claro acolhedor */
+/* MAPOS-CATALOGO-PUBLICO v1.0.10 - tema claro acolhedor + escopo do catálogo */
 :root{
   --bg:#f7f4ef;
   --bg-soft:#fbf9f6;
@@ -115,6 +115,34 @@ h1{max-width:760px;margin:.25em 0 .22em;color:var(--text-strong);font-size:clamp
 
 .category-filters{display:flex;gap:9px;overflow-x:auto;padding:18px 0 3px;scrollbar-width:none;overscroll-behavior-inline:contain}
 .category-filters::-webkit-scrollbar{display:none}
+
+.catalog-scope-note{
+  max-width:820px;
+  display:grid;
+  grid-template-columns:40px minmax(0,1fr);
+  gap:13px;
+  align-items:start;
+  margin-top:19px;
+  padding:15px 17px;
+  border:1px solid #e4dccf;
+  border-radius:16px;
+  background:rgba(255,253,249,.78);
+  box-shadow:0 5px 16px rgba(57,48,39,.035);
+}
+.catalog-scope-icon{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:#f2ede5;
+  color:#6b6258;
+  font-size:1.35rem;
+  font-weight:650;
+  line-height:1;
+}
+.catalog-scope-note strong{display:block;color:var(--text-strong);font-size:.92rem;line-height:1.35}
+.catalog-scope-note p{max-width:none;margin:4px 0 0;color:#74736d;font-size:.86rem;line-height:1.55}
 .filter-button{
   flex:0 0 auto;
   border:1px solid var(--line-strong);
@@ -221,6 +249,8 @@ h1{max-width:760px;margin:.25em 0 .22em;color:var(--text-strong);font-size:clamp
   h1{font-size:2.35rem}
   .hero p{font-size:.98rem}
   .search-box{margin-top:23px}
+  .catalog-scope-note{grid-template-columns:36px minmax(0,1fr);gap:11px;padding:13px 14px;margin-top:16px}
+  .catalog-scope-icon{width:36px;height:36px;border-radius:11px}
   .search-control{min-height:55px;grid-template-columns:43px 1fr 40px}
   .search-control input{height:53px;font-size:.95rem}
   .service-card{padding:18px;min-height:0}
